@@ -2,9 +2,9 @@
 # https://docs.gradle.org/current/userguide/version_catalogs.html#sec::toml-dependencies-format
 
 [versions]
-guava = "33.6.0-jre"
+guava = "33.5.0-jre"
 junit-jupiter-engine = "6.0.1"
-compose.bom = "2025.02.00"
+composebom = "2025.02.00"
 ktor = "3.0.3"
 qrcode = "4.5.0"
 agp = "8.8.0"
@@ -16,7 +16,7 @@ ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "kto
 ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
 ktor-server-cors = { module = "io.ktor:ktor-server-cors-jvm", version.ref = "ktor" }
 qrcode-kotlin = { module = "io.github.g0dkar:qrcode-kotlin-android", version.ref = "qrcode" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose.bom" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composebom" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
@@ -24,7 +24,7 @@ androidx-compose-material3 = { group = "androidx.compose.material3", name = "mat
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version = "1.8.2" }
-androidx-documentfile = { module = "androidx.documentfile:documentfile", version = "1.1.0" }
+androidx-documentfile = { module = "androidx.documentfile:documentfile", version = "1.0.1" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version = "2.1.0" }
