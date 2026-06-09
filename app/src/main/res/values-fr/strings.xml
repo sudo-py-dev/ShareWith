@@ -16,6 +16,8 @@
     <string name="shared_files_header">Fichiers et dossiers partagés</string>
     <string name="add_file_button">Ajouter un fichier</string>
     <string name="add_folder_button">Ajouter un dossier</string>
+    <string name="copy_link_button">Copier le lien</string>
+    <string name="share_link_button">Partager le lien</string>
     <string name="clear_all_button">Tout effacer</string>
     <string name="empty_shared_list">Aucun fichier sélectionné. Ajoutez des fichiers pour commencer le partage.</string>
     
@@ -29,7 +31,6 @@
     <string name="reject_button">Rejeter</string>
     
     <!-- Settings Screen -->
-    <string name="settings_header">Paramètres de l\'application</string>
     <string name="connection_settings_header">Configuration de la connexion</string>
     <string name="appearance_interface_header">Apparence et interface</string>
     <string name="port_label">Numéro de port HTTP</string>
@@ -80,6 +81,29 @@
     <string name="web_directory_label">Dossier</string>
     <string name="web_file_label">Fichier</string>
     
-    <string name="blocked_ips_header">Périphériques bloqués</string>
+    <string name="blocked_ips_header">Appareils Bloqués</string>
     <string name="unblock_button">Débloquer</string>
+
+    <string name="notif_channel_service_name">Service de Partage de Fichiers</string>
+    <string name="notif_channel_service_desc">Maintient le serveur de fichiers en arrière-plan</string>
+    <string name="notif_server_running_title">Serveur de Fichiers en Cours</string>
+    <string name="notif_server_access_at">Accès sur %1$s</string>
+    <string name="notif_action_stop">Arrêter</string>
+
+    <string name="notif_channel_request_name">Demandes d\'Accès</string>
+    <string name="notif_channel_request_desc">Notifications pour les demandes de connexion des clients</string>
+    <string name="notif_request_title">Demande d\'accès de %1$s</string>
+    <string name="notif_request_desc">Appareil : %1$s</string>
+
+    <string name="picker_select_folder">Sélectionner le dossier</string>
+    <string name="picker_select_file">Sélectionner le fichier</string>
+    <string name="picker_go_up">.. (Monter)</string>
+    <string name="cancel_button">Annuler</string>
+
+    <string name="log_url_copied">URL du serveur copiée dans le presse-papiers</string>
+    <string name="log_url_shared">URL du serveur partagée</string>
+    <string name="log_item_shared">URL de l\'élément partagée : %1$s</string>
+    <string name="log_path_removed">Chemin partagé supprimé : %1$s</string>
+    <string name="log_all_cleared">Tous les chemins partagés ont été effacés</string>
+    <string name="log_warning_stopped">Avertissement : Impossible de partager lorsque le serveur est arrêté</string>
 </resources>

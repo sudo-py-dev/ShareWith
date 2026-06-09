@@ -13,7 +13,7 @@
             items.forEach(item => {
                 const name = item.querySelector('.file-name').textContent.toLowerCase();
                 if (name.includes(query)) {
-                    item.style.display = 'flex';
+                    item.style.display = 'grid';
                     count++;
                 } else {
                     item.style.display = 'none';
@@ -38,15 +38,24 @@
 </head>
 <body>
     <div class="container file-container">
-        <h1 style="margin-bottom: 6px;">{appName}</h1>
+        <h1>{appName}</h1>
+        
         <div class="breadcrumbs">
             {breadcrumbsHtml}
         </div>
         
         {searchBarHtml}
         
-        <div class="file-list" id="fileListContainer">
-            {itemsHtml}
+        <div class="file-explorer">
+            <div class="file-header">
+                <span>Name</span>
+                <span>Type</span>
+                <span>Size</span>
+                <span style="text-align: right">Actions</span>
+            </div>
+            <div class="file-list" id="fileListContainer">
+                {itemsHtml}
+            </div>
         </div>
     </div>
 </body>

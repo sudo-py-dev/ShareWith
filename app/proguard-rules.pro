@@ -43,6 +43,8 @@
 -dontwarn com.sun.security.**
 -dontwarn java.lang.invoke.MethodHandle
 -dontwarn java.lang.invoke.MethodHandles$Lookup
+-dontwarn reactor.blockhound.**
+-dontwarn kotlin.**
 
 # Optimization settings
 -repackageclasses ''

@@ -16,6 +16,8 @@
     <string name="shared_files_header">Shared Files &amp; Folders</string>
     <string name="add_file_button">Add File</string>
     <string name="add_folder_button">Add Folder</string>
+    <string name="copy_link_button">Copy Link</string>
+    <string name="share_link_button">Share Link</string>
     <string name="clear_all_button">Clear All</string>
     <string name="empty_shared_list">No files selected. Add some files to start sharing.</string>
     
@@ -29,7 +31,6 @@
     <string name="reject_button">Reject</string>
     
     <!-- Settings Screen -->
-    <string name="settings_header">Application Settings</string>
     <string name="connection_settings_header">Connection Configuration</string>
     <string name="appearance_interface_header">Appearance &amp; Interface</string>
     <string name="port_label">HTTP Port Number</string>
@@ -82,4 +83,29 @@
 
     <string name="blocked_ips_header">Blocked Devices</string>
     <string name="unblock_button">Unblock</string>
+
+    <string name="notif_channel_service_name">File Sharing Service</string>
+    <string name="notif_channel_service_desc">Keeps the file server running in the background</string>
+    <string name="notif_server_running_title">File Sharing Server Running</string>
+    <string name="notif_server_access_at">Access at %1$s</string>
+    <string name="notif_action_stop">Stop</string>
+
+    <string name="notif_channel_request_name">Access Requests</string>
+    <string name="notif_channel_request_desc">Notifications for client connection requests</string>
+    <string name="notif_request_title">Access Request from %1$s</string>
+    <string name="notif_request_desc">Device: %1$s</string>
+
+    <!-- File Picker Dialog -->
+    <string name="picker_select_folder">Select Folder</string>
+    <string name="picker_select_file">Select File</string>
+    <string name="picker_go_up">.. (Go Up)</string>
+    <string name="cancel_button">Cancel</string>
+
+    <!-- Log Messages -->
+    <string name="log_url_copied">Server URL copied to clipboard</string>
+    <string name="log_url_shared">Shared server URL</string>
+    <string name="log_item_shared">Shared item URL: %1$s</string>
+    <string name="log_path_removed">Removed shared path: %1$s</string>
+    <string name="log_all_cleared">Cleared all shared paths</string>
+    <string name="log_warning_stopped">Warning: Cannot share while server is stopped</string>
 </resources>

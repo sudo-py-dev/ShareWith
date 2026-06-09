@@ -1,5 +1,6 @@
 package com.share.with.ui.tabs
 
+import android.content.Intent
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,6 +21,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Button
@@ -45,6 +47,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.share.with.AppState
 import com.share.with.FileSharingService
@@ -155,7 +158,6 @@ fun ShareTab(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(top = 4.dp),
-                            horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
@@ -163,19 +165,43 @@ fun ShareTab(
                                 style = MaterialTheme.typography.bodyLarge.copy(
                                     color = MaterialTheme.colorScheme.primary,
                                     fontWeight = FontWeight.SemiBold
-                                )
+                                ),
+                                modifier = Modifier.weight(1f),
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
                             )
-                            IconButton(
-                                onClick = {
-                                    clipboardManager.setText(AnnotatedString(serverUrl))
-                                    AppState.addLog("Server URL copied to clipboard")
+                            Row {
+                                IconButton(
+                                    onClick = {
+                                        clipboardManager.setText(AnnotatedString(serverUrl))
+                                        AppState.addLog(context.getString(R.string.log_url_copied))
+                                    }
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.ContentCopy,
+                                        contentDescription = stringResource(R.string.copy_link_button),
+                                        tint = MaterialTheme.colorScheme.primary
+                                    )
                                 }
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Default.Share,
-                                    contentDescription = "Copy Link",
-                                    tint = MaterialTheme.colorScheme.primary
-                                )
+                                IconButton(
+                                    onClick = {
+                                        val sendIntent: Intent = Intent().apply {
+                                            action = Intent.ACTION_SEND
+                                            putExtra(Intent.EXTRA_TEXT, serverUrl)
+                                            type = "text/plain"
+                                        }
+                                        val shareIntent = Intent.createChooser(sendIntent, null)
+                                        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        context.startActivity(shareIntent)
+                                        AppState.addLog(context.getString(R.string.log_url_shared))
+                                    }
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Share,
+                                        contentDescription = stringResource(R.string.share_link_button),
+                                        tint = MaterialTheme.colorScheme.primary
+                                    )
+                                }
                             }
                         }
                     }
@@ -275,18 +301,37 @@ fun ShareTab(
                             verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             for (item in AppState.sharedItems) {
-                                SharedFileRow(item = item, onRemove = {
-                                    AppState.sharedItems.remove(item)
-                                    AppState.addLog("Removed shared path: ${item.name}")
-                                })
+                                SharedFileRow(
+                                    item = item, 
+                                    onRemove = {
+                                        AppState.removeSharedItem(item)
+                                        AppState.addLog(context.getString(R.string.log_path_removed, item.name))
+                                    },
+                                    onShare = {
+                                        if (serverUrl != null) {
+                                            val itemUrl = if (item.isDirectory) "$serverUrl/?id=${item.id}" else "$serverUrl/download?id=${item.id}"
+                                            val sendIntent: Intent = Intent().apply {
+                                                action = Intent.ACTION_SEND
+                                                putExtra(Intent.EXTRA_TEXT, itemUrl)
+                                                type = "text/plain"
+                                            }
+                                            val shareIntent = Intent.createChooser(sendIntent, null)
+                                            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                            context.startActivity(shareIntent)
+                                            AppState.addLog(context.getString(R.string.log_item_shared, item.name))
+                                        } else {
+                                            AppState.addLog(context.getString(R.string.log_warning_stopped))
+                                        }
+                                    }
+                                )
                             }
                         }
                         
                         Spacer(modifier = Modifier.height(8.dp))
                         TextButton(
                             onClick = {
-                                AppState.sharedItems.clear()
-                                AppState.addLog("Cleared all shared paths")
+                                AppState.clearSharedItems()
+                                AppState.addLog(context.getString(R.string.log_all_cleared))
                             },
                             colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.error),
                             modifier = Modifier.align(Alignment.End)

@@ -16,6 +16,8 @@
     <string name="shared_files_header">Archivos y carpetas compartidos</string>
     <string name="add_file_button">Agregar archivo</string>
     <string name="add_folder_button">Agregar carpeta</string>
+    <string name="copy_link_button">Copiar enlace</string>
+    <string name="share_link_button">Compartir enlace</string>
     <string name="clear_all_button">Limpiar todo</string>
     <string name="empty_shared_list">No hay archivos seleccionados. Agregue archivos para comenzar a compartir.</string>
     
@@ -29,7 +31,6 @@
     <string name="reject_button">Rechazar</string>
     
     <!-- Settings Screen -->
-    <string name="settings_header">Configuración de la aplicación</string>
     <string name="connection_settings_header">Configuración de conexión</string>
     <string name="appearance_interface_header">Apariencia e interfaz</string>
     <string name="port_label">Número de puerto HTTP</string>
@@ -80,6 +81,29 @@
     <string name="web_directory_label">Directorio</string>
     <string name="web_file_label">Archivo</string>
     
-    <string name="blocked_ips_header">Dispositivos bloqueados</string>
+    <string name="blocked_ips_header">Dispositivos Bloqueados</string>
     <string name="unblock_button">Desbloquear</string>
+
+    <string name="notif_channel_service_name">Servicio de Uso Compartido</string>
+    <string name="notif_channel_service_desc">Mantiene el servidor de archivos ejecutándose en segundo plano</string>
+    <string name="notif_server_running_title">Servidor de Archivos en Ejecución</string>
+    <string name="notif_server_access_at">Acceso en %1$s</string>
+    <string name="notif_action_stop">Detener</string>
+
+    <string name="notif_channel_request_name">Solicitudes de Acceso</string>
+    <string name="notif_channel_request_desc">Notificaciones para solicitudes de conexión de clientes</string>
+    <string name="notif_request_title">Solicitud de acceso de %1$s</string>
+    <string name="notif_request_desc">Dispositivo: %1$s</string>
+
+    <string name="picker_select_folder">Seleccionar carpeta</string>
+    <string name="picker_select_file">Seleccionar archivo</string>
+    <string name="picker_go_up">.. (Subir)</string>
+    <string name="cancel_button">Cancelar</string>
+
+    <string name="log_url_copied">URL del servidor copiada al portapapeles</string>
+    <string name="log_url_shared">URL del servidor compartida</string>
+    <string name="log_item_shared">URL del elemento compartida: %1$s</string>
+    <string name="log_path_removed">Ruta compartida eliminada: %1$s</string>
+    <string name="log_all_cleared">Se borraron todas las rutas compartidas</string>
+    <string name="log_warning_stopped">Advertencia: No se puede compartir mientras el servidor está detenido</string>
 </resources>

@@ -81,11 +81,6 @@ kotlin {
     }
 }
 
-repositories {
-    google()
-    mavenCentral()
-}
-
 dependencies {
     // Standard test integration
     testImplementation("org.jetbrains.kotlin:kotlin-test")

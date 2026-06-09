@@ -16,6 +16,8 @@
     <string name="shared_files_header">קבצים ותיקיות משותפים</string>
     <string name="add_file_button">הוסף קובץ</string>
     <string name="add_folder_button">הוסף תיקייה</string>
+    <string name="copy_link_button">העתק קישור</string>
+    <string name="share_link_button">שתף קישור</string>
     <string name="clear_all_button">נקה הכל</string>
     <string name="empty_shared_list">לא נבחרו קבצים. הוסף קבצים כדי להתחיל לשתף.</string>
     
@@ -29,7 +31,6 @@
     <string name="reject_button">דחה</string>
     
     <!-- Settings Screen -->
-    <string name="settings_header">הגדרות אפליקציה</string>
     <string name="connection_settings_header">הגדרות חיבור</string>
     <string name="appearance_interface_header">מראה וממשק משתמש</string>
     <string name="port_label">פורט HTTP</string>
@@ -46,7 +47,7 @@
     <string name="password_label">סיסמת גישה</string>
     <string name="password_placeholder">הזן סיסמת גישה</string>
     <string name="theme_label">מצב עיצוב</string>
-    <string name="theme_system">ברירת מחדל של המערכת</string>
+    <string name="theme_system">מערכת</string>
     <string name="theme_light">מצב בהיר</string>
     <string name="theme_dark">מצב כהה</string>
     <string name="language_label">שפת ממשק</string>
@@ -82,4 +83,27 @@
 
     <string name="blocked_ips_header">מכשירים חסומים</string>
     <string name="unblock_button">בטל חסימה</string>
+
+    <string name="notif_channel_service_name">שירות שיתוף קבצים</string>
+    <string name="notif_channel_service_desc">שומר על שרת הקבצים פועל ברקע</string>
+    <string name="notif_server_running_title">שרת שיתוף קבצים פועל</string>
+    <string name="notif_server_access_at">גישה בכתובת %1$s</string>
+    <string name="notif_action_stop">עצור</string>
+
+    <string name="notif_channel_request_name">בקשות גישה</string>
+    <string name="notif_channel_request_desc">התראות עבור בקשות התחברות של מכשירים</string>
+    <string name="notif_request_title">בקשת גישה מ- %1$s</string>
+    <string name="notif_request_desc">מכשיר: %1$s</string>
+
+    <string name="picker_select_folder">בחר תיקייה</string>
+    <string name="picker_select_file">בחר קובץ</string>
+    <string name="picker_go_up">.. (למעלה)</string>
+    <string name="cancel_button">ביטול</string>
+
+    <string name="log_url_copied">כתובת השרת הועתקה ללוח</string>
+    <string name="log_url_shared">כתובת השרת שותפה</string>
+    <string name="log_item_shared">כתובת הפריט שותפה: %1$s</string>
+    <string name="log_path_removed">הנתיב המשותף הוסר: %1$s</string>
+    <string name="log_all_cleared">כל הנתיבים המשותפים נוקו</string>
+    <string name="log_warning_stopped">אזהרה: לא ניתן לשתף כאשר השרת מופסק</string>
 </resources>

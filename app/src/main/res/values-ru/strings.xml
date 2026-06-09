@@ -16,6 +16,8 @@
     <string name="shared_files_header">Общие файлы и папки</string>
     <string name="add_file_button">Добавить файл</string>
     <string name="add_folder_button">Добавить папку</string>
+    <string name="copy_link_button">Копировать ссылку</string>
+    <string name="share_link_button">Поделиться ссылкой</string>
     <string name="clear_all_button">Очистить всё</string>
     <string name="empty_shared_list">Нет выбранных файлов. Добавьте файлы, чтобы начать делиться.</string>
     
@@ -29,7 +31,6 @@
     <string name="reject_button">Отклонить</string>
     
     <!-- Settings Screen -->
-    <string name="settings_header">Настройки приложения</string>
     <string name="connection_settings_header">Конфигурация подключения</string>
     <string name="appearance_interface_header">Внешний вид и интерфейс</string>
     <string name="port_label">Номер порта HTTP</string>
@@ -82,4 +83,27 @@
     
     <string name="blocked_ips_header">Заблокированные устройства</string>
     <string name="unblock_button">Разблокировать</string>
+
+    <string name="notif_channel_service_name">Служба обмена файлами</string>
+    <string name="notif_channel_service_desc">Поддерживает работу файлового сервера в фоновом режиме</string>
+    <string name="notif_server_running_title">Сервер обмена файлами запущен</string>
+    <string name="notif_server_access_at">Доступ по адресу %1$s</string>
+    <string name="notif_action_stop">Остановить</string>
+
+    <string name="notif_channel_request_name">Запросы на доступ</string>
+    <string name="notif_channel_request_desc">Уведомления о запросах на подключение клиентов</string>
+    <string name="notif_request_title">Запрос на доступ от %1$s</string>
+    <string name="notif_request_desc">Устройство: %1$s</string>
+
+    <string name="picker_select_folder">Выбрать папку</string>
+    <string name="picker_select_file">Выбрать файл</string>
+    <string name="picker_go_up">.. (Наверх)</string>
+    <string name="cancel_button">Отмена</string>
+
+    <string name="log_url_copied">URL сервера скопирован в буфер обмена</string>
+    <string name="log_url_shared">URL сервера отправлен</string>
+    <string name="log_item_shared">URL элемента отправлен: %1$s</string>
+    <string name="log_path_removed">Общий путь удален: %1$s</string>
+    <string name="log_all_cleared">Все общие пути очищены</string>
+    <string name="log_warning_stopped">Предупреждение: Невозможно поделиться, пока сервер остановлен</string>
 </resources>

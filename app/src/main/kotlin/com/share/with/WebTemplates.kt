@@ -91,7 +91,7 @@ object WebTemplates {
         if (files.isEmpty()) {
             itemsHtml.append("<div class=\"empty-state\">${escapeHtml(emptyListLabel)}</div>")
         } else {
-            files.forEach { file ->
+            for (file in files) {
                 val isDir = file.isDirectory
                 val extension = file.name.substringAfterLast('.', "").lowercase()
                 
@@ -111,34 +111,35 @@ object WebTemplates {
                 
                 val typeName = if (isDir) directoryLabel else fileLabel
                 val sizeText = if (isDir) {
-                    downloadFolderNote
+                    "--"
                 } else {
                     formatFileSize(file.size, sizeLabel)
                 }
 
-                val actionButton = if (isDir && file.browseUrl != null) {
+                val actionButtons = if (isDir && file.browseUrl != null) {
                     """
-                    <div style="display:flex; gap:8px;">
-                        <a href="${file.browseUrl}" class="download-btn" style="background:var(--success);">Open</a>
-                        <a href="${file.downloadUrl}" class="download-btn">${escapeHtml(downloadButtonLabel)} ZIP</a>
+                    <div class="file-actions">
+                        <a href="${file.browseUrl}" class="action-btn btn-primary">Open</a>
+                        <a href="${file.downloadUrl}" class="action-btn btn-outline">ZIP</a>
                     </div>
                     """.trimIndent()
                 } else {
-                    """<a href="${file.downloadUrl}" class="download-btn">${escapeHtml(downloadButtonLabel)}</a>"""
+                    """
+                    <div class="file-actions">
+                        <a href="${file.downloadUrl}" class="action-btn btn-primary">${escapeHtml(downloadButtonLabel)}</a>
+                    </div>
+                    """.trimIndent()
                 }
 
                 itemsHtml.append("""
                     <div class="file-item $itemClass">
                         <div class="file-info">
                             <span class="file-icon">$icon</span>
-                            <div class="file-details">
-                                <div class="file-name" title="${escapeHtml(file.name)}">${escapeHtml(file.name)}</div>
-                                <div class="file-meta">
-                                    ${escapeHtml(typeLabel)}: ${escapeHtml(typeName)} &bull; ${escapeHtml(sizeLabel)}: ${escapeHtml(sizeText)}
-                                </div>
-                            </div>
+                            <span class="file-name" title="${escapeHtml(file.name)}">${escapeHtml(file.name)}</span>
                         </div>
-                        $actionButton
+                        <div class="file-type">${escapeHtml(typeName)}</div>
+                        <div class="file-size">${escapeHtml(sizeText)}</div>
+                        $actionButtons
                     </div>
                 """.trimIndent())
             }

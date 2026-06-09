@@ -58,9 +58,11 @@ class FileSharingService : Service() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 CHANNEL_ID,
-                "ShareWith Server Service",
+                getString(R.string.notif_channel_service_name),
                 NotificationManager.IMPORTANCE_LOW
-            )
+            ).apply {
+                description = getString(R.string.notif_channel_service_desc)
+            }
             val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             manager.createNotificationChannel(channel)
         }
@@ -84,11 +86,11 @@ class FileSharingService : Service() {
         val serverUrl = if (AppState.localIp != null) "http://${AppState.localIp}:${AppState.serverPort}" else "http://localhost:${AppState.serverPort}"
 
         return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("File Sharing Server Running")
-            .setContentText("Access at $serverUrl")
+            .setContentTitle(getString(R.string.notif_server_running_title))
+            .setContentText(getString(R.string.notif_server_access_at, serverUrl))
             .setSmallIcon(android.R.drawable.ic_menu_share)
             .setContentIntent(pendingIntent)
-            .addAction(android.R.drawable.ic_menu_close_clear_cancel, "Stop", stopIntent)
+            .addAction(android.R.drawable.ic_menu_close_clear_cancel, getString(R.string.notif_action_stop), stopIntent)
             .setOngoing(true)
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .build()

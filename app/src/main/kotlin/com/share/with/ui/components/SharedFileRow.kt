@@ -10,9 +10,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.InsertDriveFile
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Folder
-import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -25,12 +26,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.share.with.R
 import com.share.with.SharedItem
 
 @Composable
-fun SharedFileRow(item: SharedItem, onRemove: () -> Unit) {
+fun SharedFileRow(item: SharedItem, onRemove: () -> Unit, onShare: () -> Unit) {
     val isDir = item.isDirectory
-    val icon = if (isDir) Icons.Default.Folder else Icons.Default.Menu
+    val icon = if (isDir) Icons.Default.Folder else Icons.AutoMirrored.Filled.InsertDriveFile
 
     Row(
         modifier = Modifier
@@ -60,6 +63,13 @@ fun SharedFileRow(item: SharedItem, onRemove: () -> Unit) {
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
+            )
+        }
+        IconButton(onClick = onShare) {
+            Icon(
+                imageVector = Icons.Default.Share,
+                contentDescription = stringResource(R.string.share_link_button),
+                tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f)
             )
         }
         IconButton(onClick = onRemove) {

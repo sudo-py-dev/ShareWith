@@ -7,7 +7,7 @@ junit-jupiter-engine = "6.0.1"
 compose-plugin = "1.7.3"
 ktor = "3.0.3"
 qrcode = "4.5.0"
-agp = "8.7.3"
+agp = "8.8.0"
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
@@ -22,8 +22,8 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-documentfile = { module = "androidx.documentfile:documentfile", version = "1.0.1" }
 
 [plugins]
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version = "2.3.20" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version = "2.1.0" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version = "2.3.20" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version = "2.1.0" }
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.3.20" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.1.0" }

@@ -38,6 +38,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import java.io.File
 
+import androidx.compose.material.icons.automirrored.filled.InsertDriveFile
+import androidx.compose.ui.res.stringResource
+import com.share.with.R
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InAppFilePickerDialog(
@@ -62,17 +66,17 @@ fun InAppFilePickerDialog(
                     onPathSelected(currentDir)
                     onDismiss()
                 }) {
-                    Text("Select Folder")
+                    Text(stringResource(R.string.picker_select_folder))
                 }
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.cancel_button))
             }
         },
         title = {
-            Text(if (isDirectoryMode) "Select Folder" else "Select File")
+            Text(if (isDirectoryMode) stringResource(R.string.picker_select_folder) else stringResource(R.string.picker_select_file))
         },
         text = {
             Column(modifier = Modifier.fillMaxWidth().height(400.dp)) {
@@ -94,9 +98,9 @@ fun InAppFilePickerDialog(
                             .padding(vertical = 8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = MaterialTheme.colorScheme.primary)
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(".. (Go Up)", style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold))
+                        Text(stringResource(R.string.picker_go_up), style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold))
                     }
                     HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.15f))
                 }
@@ -122,7 +126,7 @@ fun InAppFilePickerDialog(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(
-                                imageVector = if (isDir) Icons.Default.Folder else Icons.Default.Menu,
+                                imageVector = if (isDir) Icons.Default.Folder else Icons.AutoMirrored.Filled.InsertDriveFile,
                                 tint = if (isDir) Color(0xFFFBBF24) else Color(0xFF60A5FA),
                                 contentDescription = null,
                                 modifier = Modifier.size(24.dp)

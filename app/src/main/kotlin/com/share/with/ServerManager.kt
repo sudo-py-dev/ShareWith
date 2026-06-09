@@ -119,7 +119,7 @@ object ServerManager {
 
                                 if (idStr.isNullOrEmpty()) {
                                     // Root level: show all shared items
-                                    AppState.sharedItems.forEach { item ->
+                                    for (item in AppState.sharedItems) {
                                         val browseUrl = if (item.isDirectory) "/?id=${item.id}" else null
                                         val downloadUrl = "/download?id=${item.id}"
                                         webFiles.add(
@@ -462,17 +462,17 @@ object ServerManager {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,
-                "Access Requests",
+                context.getString(R.string.notif_channel_request_name),
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
-                description = "Notifications for client connection requests"
+                description = context.getString(R.string.notif_channel_request_desc)
             }
             notificationManager.createNotificationChannel(channel)
         }
 
         val notification = NotificationCompat.Builder(context, channelId)
-            .setContentTitle("Access Request from $ip")
-            .setContentText("Device: $userAgent")
+            .setContentTitle(context.getString(R.string.notif_request_title, ip))
+            .setContentText(context.getString(R.string.notif_request_desc, userAgent))
             .setSmallIcon(android.R.drawable.ic_menu_help)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)

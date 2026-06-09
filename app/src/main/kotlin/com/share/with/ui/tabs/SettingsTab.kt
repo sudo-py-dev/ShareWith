@@ -89,7 +89,7 @@ fun SettingsTab() {
                         value = AppState.portInput,
                         onValueChange = { input ->
                             if (!AppState.serverRunning) {
-                                AppState.portInput = input
+                                AppState.updatePortInput(input)
                                 val parsedPort = input.toIntOrNull()
                                 if (parsedPort == null || parsedPort < 1 || parsedPort > 65535) {
                                     portError = portValidationInvalidStr
@@ -102,7 +102,7 @@ fun SettingsTab() {
                                             portError = portValidationCollisionStr
                                         } else {
                                             portError = null
-                                            AppState.serverPort = parsedPort
+                                            AppState.updateServerPort(parsedPort)
                                         }
                                     }
                                 }
@@ -151,21 +151,21 @@ fun SettingsTab() {
                             title = stringResource(R.string.security_mode_none),
                             description = stringResource(R.string.security_mode_none_desc),
                             selected = AppState.securityMode == SecurityMode.NONE,
-                            onClick = { AppState.securityMode = SecurityMode.NONE }
+                            onClick = { AppState.updateSecurityMode(SecurityMode.NONE) }
                         )
                         
                         SecurityOptionRow(
                             title = stringResource(R.string.security_mode_password),
                             description = stringResource(R.string.security_mode_password_desc),
                             selected = AppState.securityMode == SecurityMode.PASSWORD,
-                            onClick = { AppState.securityMode = SecurityMode.PASSWORD }
+                            onClick = { AppState.updateSecurityMode(SecurityMode.PASSWORD) }
                         )
 
                         SecurityOptionRow(
                             title = stringResource(R.string.security_mode_approval),
                             description = stringResource(R.string.security_mode_approval_desc),
                             selected = AppState.securityMode == SecurityMode.MANUAL_APPROVAL,
-                            onClick = { AppState.securityMode = SecurityMode.MANUAL_APPROVAL }
+                            onClick = { AppState.updateSecurityMode(SecurityMode.MANUAL_APPROVAL) }
                         )
                     }
 
@@ -178,7 +178,7 @@ fun SettingsTab() {
                         )
                         OutlinedTextField(
                             value = AppState.password,
-                            onValueChange = { AppState.password = it },
+                            onValueChange = { AppState.updatePassword(it) },
                             placeholder = { Text(stringResource(R.string.password_placeholder)) },
                             singleLine = true,
                             visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
@@ -238,12 +238,12 @@ fun SettingsTab() {
                             options = themeOptions,
                             selectedIndex = themeIndex,
                             onOptionSelected = { index ->
-                                AppState.selectedTheme = when (index) {
+                                AppState.updateTheme(when (index) {
                                     0 -> "System"
                                     1 -> "Light"
                                     2 -> "Dark"
                                     else -> "System"
-                                }
+                                })
                             }
                         )
                     }
@@ -292,7 +292,7 @@ fun SettingsTab() {
                                     DropdownMenuItem(
                                         text = { Text(name) },
                                         onClick = {
-                                            AppState.selectedLanguage = code
+                                            AppState.updateLanguage(code)
                                             val locale = when (code) {
                                                 "he" -> Locale.forLanguageTag("he")
                                                 else -> Locale.forLanguageTag(code)

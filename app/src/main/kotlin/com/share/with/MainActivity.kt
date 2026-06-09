@@ -11,6 +11,9 @@ class MainActivity : ComponentActivity() {
         // Initialize global crash handler
         GlobalExceptionHandler.initialize(this)
         
+        // Initialize AppState and load settings
+        AppState.initialize(this)
+        
         setContent {
             ShareWithTheme {
                 AppUI()
