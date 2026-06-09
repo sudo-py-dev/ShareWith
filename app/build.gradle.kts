@@ -4,7 +4,6 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.kotlin.compose)
 }
 
@@ -87,12 +86,14 @@ dependencies {
     // Android Activity Compose
     implementation(libs.androidx.activity.compose)
 
-    // JetBrains Compose
-    implementation(compose.runtime)
-    implementation(compose.ui)
-    implementation(compose.foundation)
-    implementation(libs.compose.material3)
-    implementation("org.jetbrains.compose.material:material-icons-extended:1.7.3")
+    // Standard Android Compose
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation("androidx.compose.material:material-icons-extended")
 
     // Ktor HTTP Server (Runs on Android Netty or CIO)
     implementation(libs.ktor.server.core)
