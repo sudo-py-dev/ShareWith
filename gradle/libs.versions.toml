@@ -7,7 +7,7 @@ junit-jupiter-engine = "6.1.0"
 composebom = "2025.02.00"
 ktor = "3.0.3"
 qrcode = "4.5.0"
-agp = "8.8.0"
+agp = "9.2.1"
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
