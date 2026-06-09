@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShareWith</string>
+    <string name="tab_share">مشاركة</string>
+    <string name="tab_settings">الإعدادات</string>
+    <string name="tab_logs">السجلات</string>
+    
+    <!-- Share Screen -->
+    <string name="server_status">حالة الخادم</string>
+    <string name="status_running">يعمل</string>
+    <string name="status_stopped">متوقف</string>
+    <string name="server_address">عنوان الخادم</string>
+    <string name="scan_qr_code">امسح رمز QR للاتصال:</string>
+    <string name="start_server">تشغيل الخادم</string>
+    <string name="stop_server">إيقاف الخادم</string>
+    <string name="shared_files_header">الملفات والمجلدات المشتركة</string>
+    <string name="add_file_button">إضافة ملف</string>
+    <string name="add_folder_button">إضافة مجلد</string>
+    <string name="clear_all_button">مسح الكل</string>
+    <string name="empty_shared_list">لم يتم تحديد أي ملفات. أضف بعض الملفات لبدء المشاركة.</string>
+    
+    <!-- Security & Clients Card -->
+    <string name="clients_header">الأجهزة والاتصالات</string>
+    <string name="active_sessions">الاتصالات النشطة</string>
+    <string name="pending_approvals">الموافقات المعلقة</string>
+    <string name="no_pending_approvals">لا توجد موافقات معلقة</string>
+    <string name="no_active_sessions">لا توجد اتصالات نشطة</string>
+    <string name="approve_button">موافقة</string>
+    <string name="reject_button">رفض</string>
+    
+    <!-- Settings Screen -->
+    <string name="settings_header">إعدادات التطبيق</string>
+    <string name="connection_settings_header">إعدادات الاتصال</string>
+    <string name="appearance_interface_header">المظهر والواجهة</string>
+    <string name="port_label">رقم منفذ HTTP</string>
+    <string name="port_validation_invalid">أدخل منفذًا صالحًا (1–65535)</string>
+    <string name="port_validation_collision">المنفذ مستخدم بالفعل</string>
+    <string name="security_header">الأمان والحماية</string>
+    <string name="security_mode_label">طريقة الحماية</string>
+    <string name="security_mode_none">بدون حماية (مفتوح للشبكة المحلية)</string>
+    <string name="security_mode_none_desc">يمكن لأي شخص على نفس الشبكة الوصول إلى الملفات المشتركة على الفور.</string>
+    <string name="security_mode_password">الحماية بكلمة مرور</string>
+    <string name="security_mode_password_desc">يجب على المستخدمين إدخال كلمة مرور مسبقة الإعداد للوصول.</string>
+    <string name="security_mode_approval">موافقة فردية</string>
+    <string name="security_mode_approval_desc">الموافقة أو الرفض يدويًا لطلب اتصال كل جهاز.</string>
+    <string name="password_label">كلمة مرور الوصول</string>
+    <string name="password_placeholder">أدخل كلمة مرور الوصول</string>
+    <string name="theme_label">وضع المظهر</string>
+    <string name="theme_system">تلقائي حسب النظام</string>
+    <string name="theme_light">الوضع الفاتح</string>
+    <string name="theme_dark">الوضع الداكن</string>
+    <string name="language_label">لغة الواجهة</string>
+    <string name="language_en">English</string>
+    <string name="language_he">עברית (Hebrew)</string>
+    <string name="language_fr">Français (French)</string>
+    <string name="language_ru">Русский (Russian)</string>
+    <string name="language_es">Español (Spanish)</string>
+    <string name="language_ar">العربية (Arabic)</string>
+    
+    <!-- Logs Screen -->
+    <string name="logs_header">سجلات الخادم والاتصال</string>
+    <string name="clear_logs_button">مسح السجلات</string>
+    <string name="empty_logs">لا توجد سجلات متاحة</string>
+    
+    <!-- Server Page Web UI -->
+    <string name="web_login_title">وصول آمن لتنزيل الملفات</string>
+    <string name="web_login_password_placeholder">أدخل كلمة مرور الخادم</string>
+    <string name="web_login_button">الوصول للملفات</string>
+    <string name="web_login_error">كلمة مرور غير صالحة. تم رفض الوصول.</string>
+    <string name="web_waiting_approval_title">طلب الاتصال معلق</string>
+    <string name="web_waiting_approval_message">في انتظار موافقة مدير الخادم على اتصالك. ستتحدث هذه الصفحة تلقائيًا…</string>
+    <string name="web_rejected_title">تم رفض الاتصال</string>
+    <string name="web_rejected_message">تم رفض طلب الاتصال الخاص بك من قبل مدير الخادم.</string>
+    <string name="web_file_list_title">الملفات المشتركة</string>
+    <string name="web_file_list_empty">لا توجد ملفات مشتركة حاليًا من قبل المضيف.</string>
+    <string name="web_download_button">تنزيل</string>
+    <string name="web_download_folder_note">(يتم تنزيله كملف ZIP)</string>
+    <string name="web_size_label">الحجم</string>
+    <string name="web_type_label">النوع</string>
+    <string name="web_directory_label">مجلد</string>
+    <string name="web_file_label">ملف</string>
+    
+    <string name="blocked_ips_header">الأجهزة المحظورة</string>
+    <string name="unblock_button">إلغاء الحظر</string>
+</resources>

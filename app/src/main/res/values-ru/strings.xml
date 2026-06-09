@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShareWith</string>
+    <string name="tab_share">Поделиться</string>
+    <string name="tab_settings">Настройки</string>
+    <string name="tab_logs">Логи</string>
+    
+    <!-- Share Screen -->
+    <string name="server_status">Статус сервера</string>
+    <string name="status_running">Запущен</string>
+    <string name="status_stopped">Остановлен</string>
+    <string name="server_address">Адрес сервера</string>
+    <string name="scan_qr_code">Отсканируйте QR-код для подключения:</string>
+    <string name="start_server">Запустить сервер</string>
+    <string name="stop_server">Остановить сервер</string>
+    <string name="shared_files_header">Общие файлы и папки</string>
+    <string name="add_file_button">Добавить файл</string>
+    <string name="add_folder_button">Добавить папку</string>
+    <string name="clear_all_button">Очистить всё</string>
+    <string name="empty_shared_list">Нет выбранных файлов. Добавьте файлы, чтобы начать делиться.</string>
+    
+    <!-- Security & Clients Card -->
+    <string name="clients_header">Клиенты и подключения</string>
+    <string name="active_sessions">Активные подключения</string>
+    <string name="pending_approvals">Ожидающие подтверждения</string>
+    <string name="no_pending_approvals">Нет ожидающих подтверждения</string>
+    <string name="no_active_sessions">Нет активных подключений</string>
+    <string name="approve_button">Одобрить</string>
+    <string name="reject_button">Отклонить</string>
+    
+    <!-- Settings Screen -->
+    <string name="settings_header">Настройки приложения</string>
+    <string name="connection_settings_header">Конфигурация подключения</string>
+    <string name="appearance_interface_header">Внешний вид и интерфейс</string>
+    <string name="port_label">Номер порта HTTP</string>
+    <string name="port_validation_invalid">Введите допустимый порт (1–65535)</string>
+    <string name="port_validation_collision">Порт уже используется</string>
+    <string name="security_header">Безопасность и защита</string>
+    <string name="security_mode_label">Метод защиты</string>
+    <string name="security_mode_none">Нет (Открыто для локальной сети)</string>
+    <string name="security_mode_none_desc">Любой пользователь в той же сети может мгновенно получить доступ к общим файлам.</string>
+    <string name="security_mode_password">Защита паролем</string>
+    <string name="security_mode_password_desc">Клиенты должны ввести настроенный пароль для получения доступа.</string>
+    <string name="security_mode_approval">Ручное подтверждение</string>
+    <string name="security_mode_approval_desc">Одобрять или отклонять запрос на подключение каждого устройства вручную.</string>
+    <string name="password_label">Пароль доступа</string>
+    <string name="password_placeholder">Введите пароль доступа</string>
+    <string name="theme_label">Цветовая тема</string>
+    <string name="theme_system">Системная по умолчанию</string>
+    <string name="theme_light">Светлая тема</string>
+    <string name="theme_dark">Темная тема</string>
+    <string name="language_label">Язык интерфейса</string>
+    <string name="language_en">English</string>
+    <string name="language_he">עברית (Hebrew)</string>
+    <string name="language_fr">Français (French)</string>
+    <string name="language_ru">Русский (Russian)</string>
+    <string name="language_es">Español (Spanish)</string>
+    <string name="language_ar">العربية (Arabic)</string>
+    
+    <!-- Logs Screen -->
+    <string name="logs_header">Логи подключений и сервера</string>
+    <string name="clear_logs_button">Очистить логи</string>
+    <string name="empty_logs">Логи отсутствуют</string>
+    
+    <!-- Server Page Web UI -->
+    <string name="web_login_title">Безопасный доступ к скачиванию файлов</string>
+    <string name="web_login_password_placeholder">Введите пароль сервера</string>
+    <string name="web_login_button">Войти к файлам</string>
+    <string name="web_login_error">Неверный пароль. Доступ запрещен.</string>
+    <string name="web_waiting_approval_title">Ожидание подтверждения</string>
+    <string name="web_waiting_approval_message">Ожидание подтверждения вашего подключения администратором сервера. Страница обновится автоматически…</string>
+    <string name="web_rejected_title">Подключение отклонено</string>
+    <string name="web_rejected_message">Ваш запрос на подключение был отклонен администратором сервера.</string>
+    <string name="web_file_list_title">Общие файлы</string>
+    <string name="web_file_list_empty">На данный момент нет доступных общих файлов.</string>
+    <string name="web_download_button">Скачать</string>
+    <string name="web_download_folder_note">(Скачивается как ZIP)</string>
+    <string name="web_size_label">Размер</string>
+    <string name="web_type_label">Тип</string>
+    <string name="web_directory_label">Папка</string>
+    <string name="web_file_label">Файл</string>
+    
+    <string name="blocked_ips_header">Заблокированные устройства</string>
+    <string name="unblock_button">Разблокировать</string>
+</resources>

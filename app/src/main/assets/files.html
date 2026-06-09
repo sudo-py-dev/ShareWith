@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html {dir}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>{title}</title>
+    <script>
+        function filterFiles() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const items = document.querySelectorAll('.file-item');
+            let count = 0;
+            items.forEach(item => {
+                const name = item.querySelector('.file-name').textContent.toLowerCase();
+                if (name.includes(query)) {
+                    item.style.display = 'flex';
+                    count++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            const emptySearch = document.getElementById('emptySearchState');
+            if (count === 0 && items.length > 0) {
+                if (!emptySearch) {
+                    const list = document.getElementById('fileListContainer');
+                    const el = document.createElement('div');
+                    el.id = 'emptySearchState';
+                    el.className = 'empty-state';
+                    el.textContent = 'No matching files found';
+                    list.appendChild(el);
+                }
+            } else {
+                if (emptySearch) emptySearch.remove();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container file-container">
+        <h1 style="margin-bottom: 6px;">{appName}</h1>
+        <div class="breadcrumbs">
+            {breadcrumbsHtml}
+        </div>
+        
+        {searchBarHtml}
+        
+        <div class="file-list" id="fileListContainer">
+            {itemsHtml}
+        </div>
+    </div>
+</body>
+</html>

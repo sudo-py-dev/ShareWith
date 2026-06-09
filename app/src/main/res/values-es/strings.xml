@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShareWith</string>
+    <string name="tab_share">Compartir</string>
+    <string name="tab_settings">Configuración</string>
+    <string name="tab_logs">Registros</string>
+    
+    <!-- Share Screen -->
+    <string name="server_status">Estado del servidor</string>
+    <string name="status_running">Ejecutando</string>
+    <string name="status_stopped">Detenido</string>
+    <string name="server_address">Dirección del servidor</string>
+    <string name="scan_qr_code">Escanee el código QR para conectarse:</string>
+    <string name="start_server">Iniciar servidor</string>
+    <string name="stop_server">Detener servidor</string>
+    <string name="shared_files_header">Archivos y carpetas compartidos</string>
+    <string name="add_file_button">Agregar archivo</string>
+    <string name="add_folder_button">Agregar carpeta</string>
+    <string name="clear_all_button">Limpiar todo</string>
+    <string name="empty_shared_list">No hay archivos seleccionados. Agregue archivos para comenzar a compartir.</string>
+    
+    <!-- Security & Clients Card -->
+    <string name="clients_header">Clientes y conexiones</string>
+    <string name="active_sessions">Conexiones activas</string>
+    <string name="pending_approvals">Autorizaciones pendientes</string>
+    <string name="no_pending_approvals">No hay autorizaciones pendientes</string>
+    <string name="no_active_sessions">No hay conexiones activas</string>
+    <string name="approve_button">Aprobar</string>
+    <string name="reject_button">Rechazar</string>
+    
+    <!-- Settings Screen -->
+    <string name="settings_header">Configuración de la aplicación</string>
+    <string name="connection_settings_header">Configuración de conexión</string>
+    <string name="appearance_interface_header">Apariencia e interfaz</string>
+    <string name="port_label">Número de puerto HTTP</string>
+    <string name="port_validation_invalid">Ingrese un puerto válido (1–65535)</string>
+    <string name="port_validation_collision">El puerto ya está en uso</string>
+    <string name="security_header">Seguridad y protección</string>
+    <string name="security_mode_label">Método de protección</string>
+    <string name="security_mode_none">Ninguno (Abierto a la red local)</string>
+    <string name="security_mode_none_desc">Cualquier persona en la misma red puede acceder a los archivos compartidos de inmediato.</string>
+    <string name="security_mode_password">Protección con contraseña</string>
+    <string name="security_mode_password_desc">Los clientes deben ingresar una contraseña preconfigurada para obtener acceso.</string>
+    <string name="security_mode_approval">Aprobación manual</string>
+    <string name="security_mode_approval_desc">Aprobar o rechazar manualmente la solicitud de conexión de cada dispositivo.</string>
+    <string name="password_label">Contraseña de acceso</string>
+    <string name="password_placeholder">Ingrese la contraseña de acceso</string>
+    <string name="theme_label">Modo de tema</string>
+    <string name="theme_system">Predeterminado del sistema</string>
+    <string name="theme_light">Modo claro</string>
+    <string name="theme_dark">Modo oscuro</string>
+    <string name="language_label">Idioma de la interfaz</string>
+    <string name="language_en">English</string>
+    <string name="language_he">עברית (Hebrew)</string>
+    <string name="language_fr">Français (French)</string>
+    <string name="language_ru">Русский (Russian)</string>
+    <string name="language_es">Español (Spanish)</string>
+    <string name="language_ar">العربية (Arabic)</string>
+    
+    <!-- Logs Screen -->
+    <string name="logs_header">Registros del servidor y conexiones</string>
+    <string name="clear_logs_button">Borrar registros</string>
+    <string name="empty_logs">No hay registros disponibles</string>
+    
+    <!-- Server Page Web UI -->
+    <string name="web_login_title">Acceso seguro a la descarga de archivos</string>
+    <string name="web_login_password_placeholder">Ingrese la contraseña del servidor</string>
+    <string name="web_login_button">Acceder a archivos</string>
+    <string name="web_login_error">Contraseña incorrecta. Acceso denegado.</string>
+    <string name="web_waiting_approval_title">Aprobación requerida</string>
+    <string name="web_waiting_approval_message">Esperando a que el administrador del servidor apruebe su conexión. Esta página se actualizará automáticamente…</string>
+    <string name="web_rejected_title">Conexión rechazada</string>
+    <string name="web_rejected_message">Su solicitud de conexión fue rechazada por el administrador del servidor.</string>
+    <string name="web_file_list_title">Archivos compartidos</string>
+    <string name="web_file_list_empty">No hay archivos compartidos por el host en este momento.</string>
+    <string name="web_download_button">Descargar</string>
+    <string name="web_download_folder_note">(Descargado como ZIP)</string>
+    <string name="web_size_label">Tamaño</string>
+    <string name="web_type_label">Tipo</string>
+    <string name="web_directory_label">Directorio</string>
+    <string name="web_file_label">Archivo</string>
+    
+    <string name="blocked_ips_header">Dispositivos bloqueados</string>
+    <string name="unblock_button">Desbloquear</string>
+</resources>

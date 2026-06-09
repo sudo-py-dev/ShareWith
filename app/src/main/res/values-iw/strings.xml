@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShareWith</string>
+    <string name="tab_share">שיתוף</string>
+    <string name="tab_settings">הגדרות</string>
+    <string name="tab_logs">יומן רישום</string>
+    
+    <!-- Share Screen -->
+    <string name="server_status">מצב שרת</string>
+    <string name="status_running">פעיל</string>
+    <string name="status_stopped">כבוי</string>
+    <string name="server_address">כתובת השרת</string>
+    <string name="scan_qr_code">סרוק את קוד ה-QR כדי להתחבר:</string>
+    <string name="start_server">הפעל שרת</string>
+    <string name="stop_server">עצור שרת</string>
+    <string name="shared_files_header">קבצים ותיקיות משותפים</string>
+    <string name="add_file_button">הוסף קובץ</string>
+    <string name="add_folder_button">הוסף תיקייה</string>
+    <string name="clear_all_button">נקה הכל</string>
+    <string name="empty_shared_list">לא נבחרו קבצים. הוסף קבצים כדי להתחיל לשתף.</string>
+    
+    <!-- Security & Clients Card -->
+    <string name="clients_header">לקוחות וחיבורים</string>
+    <string name="active_sessions">חיבורים פעילים</string>
+    <string name="pending_approvals">אישורים ממתינים</string>
+    <string name="no_pending_approvals">אין אישורים ממתינים</string>
+    <string name="no_active_sessions">אין חיבורים פעילים</string>
+    <string name="approve_button">אשר</string>
+    <string name="reject_button">דחה</string>
+    
+    <!-- Settings Screen -->
+    <string name="settings_header">הגדרות אפליקציה</string>
+    <string name="connection_settings_header">הגדרות חיבור</string>
+    <string name="appearance_interface_header">מראה וממשק משתמש</string>
+    <string name="port_label">פורט HTTP</string>
+    <string name="port_validation_invalid">הזן פורט תקין (1–65535)</string>
+    <string name="port_validation_collision">הפורט כבר נמצא בשימוש</string>
+    <string name="security_header">אבטחה והגנה</string>
+    <string name="security_mode_label">שיטת הגנה</string>
+    <string name="security_mode_none">ללא הגנה (פתוח ברשת המקומית)</string>
+    <string name="security_mode_none_desc">כל אחד באותה רשת יכול לגשת לקבצים המשותפים באופן מיידי.</string>
+    <string name="security_mode_password">הגנת סיסמה</string>
+    <string name="security_mode_password_desc">על המשתמשים להזין סיסמה מוגדרת מראש כדי לקבל גישה.</string>
+    <string name="security_mode_approval">אישור לקוחות ידני</string>
+    <string name="security_mode_approval_desc">אשר או דחה את בקשת החיבור של כל מכשיר באופן ידני.</string>
+    <string name="password_label">סיסמת גישה</string>
+    <string name="password_placeholder">הזן סיסמת גישה</string>
+    <string name="theme_label">מצב עיצוב</string>
+    <string name="theme_system">ברירת מחדל של המערכת</string>
+    <string name="theme_light">מצב בהיר</string>
+    <string name="theme_dark">מצב כהה</string>
+    <string name="language_label">שפת ממשק</string>
+    <string name="language_en">English</string>
+    <string name="language_he">עברית (Hebrew)</string>
+    <string name="language_fr">Français (French)</string>
+    <string name="language_ru">Русский (Russian)</string>
+    <string name="language_es">Español (Spanish)</string>
+    <string name="language_ar">العربية (Arabic)</string>
+    
+    <!-- Logs Screen -->
+    <string name="logs_header">יומן פעילות שרת</string>
+    <string name="clear_logs_button">נקה יומן</string>
+    <string name="empty_logs">אין רשומות פעילות</string>
+    
+    <!-- Server Page Web UI (Served to clients) -->
+    <string name="web_login_title">גישה מאובטחת להורדת קבצים</string>
+    <string name="web_login_password_placeholder">הזן סיסמת שרת</string>
+    <string name="web_login_button">כניסה לקבצים</string>
+    <string name="web_login_error">סיסמה שגויה. הגישה נדחתה.</string>
+    <string name="web_waiting_approval_title">בקשת חיבור ממתינה</string>
+    <string name="web_waiting_approval_message">ממתין למנהל השרת שיאשר את חיבורך. דף זה יתרענן אוטומטית…</string>
+    <string name="web_rejected_title">החיבור נדחה</string>
+    <string name="web_rejected_message">בקשת החיבור שלך נדחתה על ידי מנהל השרת.</string>
+    <string name="web_file_list_title">קבצים משותפים</string>
+    <string name="web_file_list_empty">אין קבצים משותפים כעת על ידי המארח.</string>
+    <string name="web_download_button">הורדה</string>
+    <string name="web_download_folder_note">(יורד כקובץ ZIP)</string>
+    <string name="web_size_label">גודל</string>
+    <string name="web_type_label">סוג</string>
+    <string name="web_directory_label">תיקייה</string>
+    <string name="web_file_label">קובץ</string>
+
+    <string name="blocked_ips_header">מכשירים חסומים</string>
+    <string name="unblock_button">בטל חסימה</string>
+</resources>

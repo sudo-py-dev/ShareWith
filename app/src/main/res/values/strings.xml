@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShareWith</string>
+    <string name="tab_share">Share</string>
+    <string name="tab_settings">Settings</string>
+    <string name="tab_logs">Logs</string>
+    
+    <!-- Share Screen -->
+    <string name="server_status">Server Status</string>
+    <string name="status_running">Running</string>
+    <string name="status_stopped">Stopped</string>
+    <string name="server_address">Server Address</string>
+    <string name="scan_qr_code">Scan QR code to connect:</string>
+    <string name="start_server">Start Server</string>
+    <string name="stop_server">Stop Server</string>
+    <string name="shared_files_header">Shared Files &amp; Folders</string>
+    <string name="add_file_button">Add File</string>
+    <string name="add_folder_button">Add Folder</string>
+    <string name="clear_all_button">Clear All</string>
+    <string name="empty_shared_list">No files selected. Add some files to start sharing.</string>
+    
+    <!-- Security & Clients Card -->
+    <string name="clients_header">Clients &amp; Connections</string>
+    <string name="active_sessions">Active Connections</string>
+    <string name="pending_approvals">Pending Approvals</string>
+    <string name="no_pending_approvals">No pending approvals</string>
+    <string name="no_active_sessions">No active connections</string>
+    <string name="approve_button">Approve</string>
+    <string name="reject_button">Reject</string>
+    
+    <!-- Settings Screen -->
+    <string name="settings_header">Application Settings</string>
+    <string name="connection_settings_header">Connection Configuration</string>
+    <string name="appearance_interface_header">Appearance &amp; Interface</string>
+    <string name="port_label">HTTP Port Number</string>
+    <string name="port_validation_invalid">Enter a valid port (1–65535)</string>
+    <string name="port_validation_collision">Port already in use</string>
+    <string name="security_header">Security &amp; Protection</string>
+    <string name="security_mode_label">Protection Method</string>
+    <string name="security_mode_none">None (Open to local network)</string>
+    <string name="security_mode_none_desc">Anyone on the same network can access shared files immediately.</string>
+    <string name="security_mode_password">Password Protection</string>
+    <string name="security_mode_password_desc">Clients must enter a pre-configured password to gain access.</string>
+    <string name="security_mode_approval">One-by-One Approval</string>
+    <string name="security_mode_approval_desc">Approve or reject each device connection request manually.</string>
+    <string name="password_label">Access Password</string>
+    <string name="password_placeholder">Enter access password</string>
+    <string name="theme_label">Theme Mode</string>
+    <string name="theme_system">System Default</string>
+    <string name="theme_light">Light Mode</string>
+    <string name="theme_dark">Dark Mode</string>
+    <string name="language_label">Interface Language</string>
+    <string name="language_en">English</string>
+    <string name="language_he">עברית (Hebrew)</string>
+    <string name="language_fr">Français (French)</string>
+    <string name="language_ru">Русский (Russian)</string>
+    <string name="language_es">Español (Spanish)</string>
+    <string name="language_ar">العربية (Arabic)</string>
+    
+    <!-- Logs Screen -->
+    <string name="logs_header">Connection &amp; Server Logs</string>
+    <string name="clear_logs_button">Clear Logs</string>
+    <string name="empty_logs">No log records available</string>
+    
+    <!-- Server Page Web UI (Served to clients) -->
+    <string name="web_login_title">Secure File Download Access</string>
+    <string name="web_login_password_placeholder">Enter Server Password</string>
+    <string name="web_login_button">Access Files</string>
+    <string name="web_login_error">Invalid Password. Access Denied.</string>
+    <string name="web_waiting_approval_title">Approval Requested</string>
+    <string name="web_waiting_approval_message">Waiting for the server administrator to approve your connection. This page will refresh automatically…</string>
+    <string name="web_rejected_title">Connection Rejected</string>
+    <string name="web_rejected_message">Your connection request was rejected by the server administrator.</string>
+    <string name="web_file_list_title">Shared Files</string>
+    <string name="web_file_list_empty">No files are currently shared by the host.</string>
+    <string name="web_download_button">Download</string>
+    <string name="web_download_folder_note">(Downloaded as ZIP)</string>
+    <string name="web_size_label">Size</string>
+    <string name="web_type_label">Type</string>
+    <string name="web_directory_label">Directory</string>
+    <string name="web_file_label">File</string>
+
+    <string name="blocked_ips_header">Blocked Devices</string>
+    <string name="unblock_button">Unblock</string>
+</resources>
