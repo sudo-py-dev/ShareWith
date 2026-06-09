@@ -3,7 +3,7 @@
 
 [versions]
 guava = "33.5.0-jre"
-junit-jupiter-engine = "6.0.1"
+junit-jupiter-engine = "6.1.0"
 composebom = "2025.02.00"
 ktor = "3.0.3"
 qrcode = "4.5.0"
