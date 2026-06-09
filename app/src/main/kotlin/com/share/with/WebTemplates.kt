@@ -86,6 +86,7 @@ object WebTemplates {
         val typeLabel = context.getString(R.string.web_type_label)
         val sizeLabel = context.getString(R.string.web_size_label)
         val downloadButtonLabel = context.getString(R.string.web_download_button)
+        val openButtonLabel = context.getString(R.string.web_open_button)
 
         val itemsHtml = StringBuilder()
         if (files.isEmpty()) {
@@ -121,7 +122,7 @@ object WebTemplates {
                 val actionButtons = if (isDir && file.browseUrl != null) {
                     """
                     <div class="file-actions">
-                        <a href="${file.browseUrl}" class="action-btn btn-primary">Open</a>
+                        <a href="${file.browseUrl}" class="action-btn btn-primary">${escapeHtml(openButtonLabel)}</a>
                         <a href="${file.downloadUrl}" download="${escapeHtml(downloadFilename)}" class="action-btn btn-outline">ZIP</a>
                     </div>
                     """.trimIndent()

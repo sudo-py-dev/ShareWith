@@ -75,6 +75,7 @@
     <string name="web_file_list_title">Archivos compartidos</string>
     <string name="web_file_list_empty">No hay archivos compartidos por el host en este momento.</string>
     <string name="web_download_button">Descargar</string>
+    <string name="web_open_button">Abrir</string>
     <string name="web_download_folder_note">(Descargado como ZIP)</string>
     <string name="web_size_label">Tamaño</string>
     <string name="web_type_label">Tipo</string>

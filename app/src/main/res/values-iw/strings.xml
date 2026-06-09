@@ -75,6 +75,7 @@
     <string name="web_file_list_title">קבצים משותפים</string>
     <string name="web_file_list_empty">אין קבצים משותפים כעת על ידי המארח.</string>
     <string name="web_download_button">הורדה</string>
+    <string name="web_open_button">פתח</string>
     <string name="web_download_folder_note">(יורד כקובץ ZIP)</string>
     <string name="web_size_label">גודל</string>
     <string name="web_type_label">סוג</string>

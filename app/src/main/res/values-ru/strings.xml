@@ -75,6 +75,7 @@
     <string name="web_file_list_title">Общие файлы</string>
     <string name="web_file_list_empty">На данный момент нет доступных общих файлов.</string>
     <string name="web_download_button">Скачать</string>
+    <string name="web_open_button">Открыть</string>
     <string name="web_download_folder_note">(Скачивается как ZIP)</string>
     <string name="web_size_label">Размер</string>
     <string name="web_type_label">Тип</string>

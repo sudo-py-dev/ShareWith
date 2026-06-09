@@ -75,6 +75,7 @@
     <string name="web_file_list_title">الملفات المشتركة</string>
     <string name="web_file_list_empty">لا توجد ملفات مشتركة حاليًا من قبل المضيف.</string>
     <string name="web_download_button">تنزيل</string>
+    <string name="web_open_button">فتح</string>
     <string name="web_download_folder_note">(يتم تنزيله كملف ZIP)</string>
     <string name="web_size_label">الحجم</string>
     <string name="web_type_label">النوع</string>
