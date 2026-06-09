@@ -30,4 +30,4 @@ androidx-documentfile = { module = "androidx.documentfile:documentfile", version
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version = "2.4.0" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version = "2.1.0" }
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.1.0" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.4.0" }
