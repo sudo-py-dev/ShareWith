@@ -116,17 +116,19 @@ object WebTemplates {
                     formatFileSize(file.size, sizeLabel)
                 }
 
+                val downloadFilename = if (isDir) "${file.name}.zip" else file.name
+
                 val actionButtons = if (isDir && file.browseUrl != null) {
                     """
                     <div class="file-actions">
                         <a href="${file.browseUrl}" class="action-btn btn-primary">Open</a>
-                        <a href="${file.downloadUrl}" class="action-btn btn-outline">ZIP</a>
+                        <a href="${file.downloadUrl}" download="${escapeHtml(downloadFilename)}" class="action-btn btn-outline">ZIP</a>
                     </div>
                     """.trimIndent()
                 } else {
                     """
                     <div class="file-actions">
-                        <a href="${file.downloadUrl}" class="action-btn btn-primary">${escapeHtml(downloadButtonLabel)}</a>
+                        <a href="${file.downloadUrl}" download="${escapeHtml(downloadFilename)}" class="action-btn btn-primary">${escapeHtml(downloadButtonLabel)}</a>
                     </div>
                     """.trimIndent()
                 }

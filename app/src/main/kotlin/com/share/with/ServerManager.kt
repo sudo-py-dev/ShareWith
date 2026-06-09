@@ -369,16 +369,18 @@ object ServerManager {
 
                             if (targetFile.isFile) {
                                 AppState.addLog("File downloaded: ${targetFile.name} by $ip")
+                                val encodedName = java.net.URLEncoder.encode(targetFile.name, "UTF-8").replace("+", "%20")
                                 call.response.header(
                                     HttpHeaders.ContentDisposition,
-                                    ContentDisposition.Attachment.withParameter(ContentDisposition.Parameters.FileName, targetFile.name).toString()
+                                    "attachment; filename=\"$encodedName\"; filename*=UTF-8''$encodedName"
                                 )
                                 call.respondFile(targetFile)
                             } else if (targetFile.isDirectory) {
                                 AppState.addLog("Directory download (as ZIP) started: ${targetFile.name} by $ip")
+                                val encodedName = java.net.URLEncoder.encode("${targetFile.name}.zip", "UTF-8").replace("+", "%20")
                                 call.response.header(
                                     HttpHeaders.ContentDisposition,
-                                    ContentDisposition.Attachment.withParameter(ContentDisposition.Parameters.FileName, "${targetFile.name}.zip").toString()
+                                    "attachment; filename=\"$encodedName\"; filename*=UTF-8''$encodedName"
                                 )
                                 call.respondOutputStream(ContentType.Application.Zip) {
                                     ZipOutputStream(this).use { zos ->
