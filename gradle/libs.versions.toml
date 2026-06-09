@@ -4,7 +4,7 @@
 [versions]
 guava = "33.6.0-jre"
 junit-jupiter-engine = "6.0.1"
-compose-plugin = "1.9.0"
+compose.bom = "2025.02.00"
 ktor = "3.0.3"
 qrcode = "4.5.0"
 agp = "8.8.0"
@@ -16,7 +16,7 @@ ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "kto
 ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
 ktor-server-cors = { module = "io.ktor:ktor-server-cors-jvm", version.ref = "ktor" }
 qrcode-kotlin = { module = "io.github.g0dkar:qrcode-kotlin-android", version.ref = "qrcode" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose.bom" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
