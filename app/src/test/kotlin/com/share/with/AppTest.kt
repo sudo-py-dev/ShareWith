@@ -8,21 +8,24 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class SecurityTest {
-
     @Test
     fun testPathTraversalPrevention() {
         // Mock a base shared directory
         val baseDir = File("build/tmp/shared").canonicalFile
         baseDir.mkdirs()
-        
+
         // Validation algorithm replicating ServerManager.kt
-        fun isPathSafe(subPath: String?, resolvedFileOverrideForSymlink: File? = null): Boolean {
+        fun isPathSafe(
+            subPath: String?,
+            resolvedFileOverrideForSymlink: File? = null,
+        ): Boolean {
             if (subPath != null && (subPath.startsWith("/") || subPath.startsWith("\\") || subPath.contains(".."))) return false
-            val targetFile = resolvedFileOverrideForSymlink ?: if (subPath.isNullOrEmpty()) {
-                baseDir
-            } else {
-                File(baseDir, subPath).canonicalFile
-            }
+            val targetFile =
+                resolvedFileOverrideForSymlink ?: if (subPath.isNullOrEmpty()) {
+                    baseDir
+                } else {
+                    File(baseDir, subPath).canonicalFile
+                }
             val rootPath = baseDir.path
             return targetFile.path.startsWith(rootPath + File.separator) || targetFile.path == rootPath
         }
@@ -38,7 +41,7 @@ class SecurityTest {
         assertFalse(isPathSafe("../etc/passwd"), "Relative path escaping shared root should be blocked")
         assertFalse(isPathSafe("folder/../../escape.txt"), "Deep relative escaping should be blocked")
         assertFalse(isPathSafe("/etc/passwd"), "Absolute path escaping shared root should be blocked")
-        
+
         // Test sibling prefix traversal (e.g. symlink to sibling directory with shared prefix)
         val siblingSecretDir = File("build/tmp/shared-secret").canonicalFile
         assertFalse(isPathSafe("symlink_to_sibling", siblingSecretDir), "Access to prefix-matching sibling directory must be blocked")
@@ -51,26 +54,27 @@ class SecurityTest {
     fun testOnlySharedItemsCanBeAccessed() {
         // Clear all shared items
         AppState.sharedItems.clear()
-        
+
         // Add a valid shared item
         val allowedFile = File("build/tmp/allowed_file.txt").canonicalFile
-        val allowedItem = SharedItem(
-            name = allowedFile.name,
-            uriString = allowedFile.absolutePath,
-            size = 100L,
-            isDirectory = false
-        )
+        val allowedItem =
+            SharedItem(
+                name = allowedFile.name,
+                uriString = allowedFile.absolutePath,
+                size = 100L,
+                isDirectory = false,
+            )
         AppState.sharedItems.add(allowedItem)
-        
+
         // 1. Verify that the allowed item can be found by its UUID
         val foundItem = AppState.sharedItems.find { it.id == allowedItem.id }
         assertEquals(allowedItem, foundItem, "Allowed item should be accessible")
-        
+
         // 2. Verify that an item with an arbitrary UUID not added by the user cannot be found
         val fakeId = java.util.UUID.randomUUID().toString()
         val notFoundItem = AppState.sharedItems.find { it.id == fakeId }
         assertNull(notFoundItem, "Arbitrary non-added items must not be accessible")
-        
+
         // Clean up
         AppState.sharedItems.clear()
     }
@@ -84,7 +88,6 @@ class SecurityTest {
 }
 
 class AppStateTest {
-
     @Test
     fun testLogStateManagement() {
         AppState.clearLogs()
@@ -174,7 +177,7 @@ class AppStateTest {
         // Verify state bindings work as reactive properties
         AppState.selectedTheme = "System"
         assertEquals("System", AppState.selectedTheme)
-        
+
         AppState.selectedTheme = "Dark"
         assertEquals("Dark", AppState.selectedTheme)
 

@@ -37,15 +37,15 @@ fun LogsTab() {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = stringResource(R.string.logs_header),
-                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
             )
             Button(
                 onClick = { AppState.clearLogs() },
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
             ) {
                 Text(stringResource(R.string.clear_logs_button))
             }
@@ -54,41 +54,45 @@ fun LogsTab() {
         Spacer(modifier = Modifier.height(16.dp))
 
         Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
             shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         ) {
             if (AppState.logs.isEmpty()) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(
                         text = stringResource(R.string.empty_logs),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                     )
                 }
             } else {
                 LazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(6.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(6.dp),
                 ) {
                     items(AppState.logs) { log ->
                         Text(
                             text = log,
-                            style = TextStyle(
-                                fontFamily = FontFamily.Monospace,
-                                fontSize = 12.sp,
-                                color = if (log.contains("alert", ignoreCase = true) || log.contains("failed", ignoreCase = true) || log.contains("Error", ignoreCase = true)) {
-                                    MaterialTheme.colorScheme.error
-                                } else if (log.contains("APPROVED")) {
-                                    Color(0xFF10B981)
-                                } else {
-                                    MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
-                                }
-                            )
+                            style =
+                                TextStyle(
+                                    fontFamily = FontFamily.Monospace,
+                                    fontSize = 12.sp,
+                                    color =
+                                        if (log.contains("alert", ignoreCase = true) || log.contains("failed", ignoreCase = true) || log.contains("Error", ignoreCase = true)) {
+                                            MaterialTheme.colorScheme.error
+                                        } else if (log.contains("APPROVED")) {
+                                            Color(0xFF10B981)
+                                        } else {
+                                            MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
+                                        },
+                                ),
                         )
                     }
                 }

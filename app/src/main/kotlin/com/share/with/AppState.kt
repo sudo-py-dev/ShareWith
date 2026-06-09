@@ -3,9 +3,9 @@ package com.share.with
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.setValue
 import org.json.JSONArray
 import org.json.JSONObject
@@ -19,7 +19,7 @@ data class PendingConnection(
     val token: String,
     val ipAddress: String,
     val userAgent: String,
-    val timestamp: Long = System.currentTimeMillis()
+    val timestamp: Long = System.currentTimeMillis(),
 )
 
 data class ActiveSession(
@@ -27,7 +27,7 @@ data class ActiveSession(
     val ipAddress: String,
     val userAgent: String,
     val connectedAt: Long = System.currentTimeMillis(),
-    val lastSeen: Long = System.currentTimeMillis()
+    val lastSeen: Long = System.currentTimeMillis(),
 )
 
 data class SharedItem(
@@ -35,7 +35,7 @@ data class SharedItem(
     val name: String,
     val uriString: String,
     val size: Long,
-    val isDirectory: Boolean
+    val isDirectory: Boolean,
 )
 
 object AppState {
@@ -73,14 +73,14 @@ object AppState {
     // UI Theme & Lang
     var selectedTheme by mutableStateOf("System")
     var selectedLanguage by mutableStateOf("en")
-    
+
     // Server State
     var serverRunning by mutableStateOf(false)
     var portInput by mutableStateOf("8080")
     var serverPort by mutableIntStateOf(8080)
     var securityMode by mutableStateOf(SecurityMode.MANUAL_APPROVAL)
     var password by mutableStateOf("")
-    
+
     var localIp by mutableStateOf<String?>(null)
 
     // Dynamic Lists (Thread-Safe Wrapper Methods)
@@ -117,20 +117,24 @@ object AppState {
         prefs?.edit()?.putString("password", pass)?.apply()
     }
 
-    fun addSharedItem(file: java.io.File, isDirectory: Boolean) {
+    fun addSharedItem(
+        file: java.io.File,
+        isDirectory: Boolean,
+    ) {
         synchronized(lock) {
-            val item = SharedItem(
-                name = file.name,
-                uriString = file.absolutePath,
-                size = if (isDirectory) 0L else file.length(),
-                isDirectory = isDirectory
-            )
+            val item =
+                SharedItem(
+                    name = file.name,
+                    uriString = file.absolutePath,
+                    size = if (isDirectory) 0L else file.length(),
+                    isDirectory = isDirectory,
+                )
             sharedItems.add(item)
             saveSharedItems()
             addLog("Added ${if (isDirectory) "folder" else "file"}: ${item.name}")
         }
     }
-    
+
     fun removeSharedItem(item: SharedItem) {
         synchronized(lock) {
             if (sharedItems.remove(item)) {
@@ -164,12 +168,12 @@ object AppState {
             selectedLanguage = p.getString("language", "en") ?: "en"
             portInput = p.getString("port_input", "8080") ?: "8080"
             serverPort = p.getInt("server_port", 8080)
-            
+
             val modeStr = p.getString("security_mode", SecurityMode.MANUAL_APPROVAL.name)
             securityMode = SecurityMode.entries.find { it.name == modeStr } ?: SecurityMode.MANUAL_APPROVAL
-            
+
             password = p.getString("password", "") ?: ""
-            
+
             // Blocked IPs
             try {
                 val array = JSONArray(p.getString("blocked_ips", "[]"))
@@ -177,7 +181,8 @@ object AppState {
                 for (i in 0 until array.length()) {
                     blockedIps.add(array.getString(i))
                 }
-            } catch (e: Exception) {}
+            } catch (e: Exception) {
+            }
 
             // Shared Items
             try {
@@ -185,15 +190,18 @@ object AppState {
                 sharedItems.clear()
                 for (i in 0 until array.length()) {
                     val obj = array.getJSONObject(i)
-                    sharedItems.add(SharedItem(
-                        id = obj.getString("id"),
-                        name = obj.getString("name"),
-                        uriString = obj.getString("uriString"),
-                        size = obj.getLong("size"),
-                        isDirectory = obj.getBoolean("isDirectory")
-                    ))
+                    sharedItems.add(
+                        SharedItem(
+                            id = obj.getString("id"),
+                            name = obj.getString("name"),
+                            uriString = obj.getString("uriString"),
+                            size = obj.getLong("size"),
+                            isDirectory = obj.getBoolean("isDirectory"),
+                        ),
+                    )
                 }
-            } catch (e: Exception) {}
+            } catch (e: Exception) {
+            }
         }
     }
 
@@ -264,14 +272,21 @@ object AppState {
         }
     }
 
-    fun addActive(token: String, ipAddress: String, userAgent: String) {
+    fun addActive(
+        token: String,
+        ipAddress: String,
+        userAgent: String,
+    ) {
         synchronized(lock) {
             activeSessions.removeAll { it.ipAddress == ipAddress }
             activeSessions.add(ActiveSession(token, ipAddress, userAgent))
         }
     }
 
-    fun updateSessionActivity(token: String, ipAddress: String) {
+    fun updateSessionActivity(
+        token: String,
+        ipAddress: String,
+    ) {
         synchronized(lock) {
             val sessionIndex = activeSessions.indexOfFirst { it.token == token && it.ipAddress == ipAddress }
             if (sessionIndex != -1) {
@@ -306,7 +321,7 @@ object AppState {
         try {
             val interfaces = NetworkInterface.getNetworkInterfaces()
             val candidateIps = mutableListOf<Pair<String, String>>() // Interface Name to IP
-            
+
             while (interfaces.hasMoreElements()) {
                 val iface = interfaces.nextElement()
                 if (iface.isLoopback || !iface.isUp) continue
@@ -329,7 +344,7 @@ object AppState {
                     return candidate.second
                 }
             }
-            
+
             // Return first found IPv4 address as fallback
             return candidateIps.firstOrNull()?.second
         } catch (e: Exception) {

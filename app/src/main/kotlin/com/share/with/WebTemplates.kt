@@ -1,8 +1,6 @@
 package com.share.with
 
 import android.content.Context
-import com.share.with.R
-import java.io.File
 import java.util.Locale
 
 object WebTemplates {
@@ -35,7 +33,11 @@ object WebTemplates {
         return if (AppState.selectedLanguage == "he" || AppState.selectedLanguage == "ar") "dir=\"rtl\"" else "dir=\"ltr\""
     }
 
-    fun loginPage(context: Context, error: String?, csrfToken: String): String {
+    fun loginPage(
+        context: Context,
+        error: String?,
+        csrfToken: String,
+    ): String {
         val errorHtml = if (error != null) "<div class=\"error-box\">${escapeHtml(error)}</div>" else ""
         return loginHtml
             .replace("{dir}", getDirectionHtml())
@@ -49,7 +51,10 @@ object WebTemplates {
             .replace("{csrfToken}", escapeHtml(csrfToken))
     }
 
-    fun waitingPage(context: Context, token: String): String {
+    fun waitingPage(
+        context: Context,
+        token: String,
+    ): String {
         return waitingHtml
             .replace("{dir}", getDirectionHtml())
             .replace("{title}", escapeHtml(context.getString(R.string.web_waiting_approval_title)))
@@ -71,13 +76,13 @@ object WebTemplates {
         val size: Long,
         val isDirectory: Boolean,
         val browseUrl: String?,
-        val downloadUrl: String
+        val downloadUrl: String,
     )
 
     fun fileListPage(
-        context: Context, 
-        files: List<WebFileEntry>, 
-        breadcrumbs: List<Pair<String, String>>
+        context: Context,
+        files: List<WebFileEntry>,
+        breadcrumbs: List<Pair<String, String>>,
     ): String {
         val emptyListLabel = context.getString(R.string.web_file_list_empty)
         val directoryLabel = context.getString(R.string.web_directory_label)
@@ -95,46 +100,52 @@ object WebTemplates {
             for (file in files) {
                 val isDir = file.isDirectory
                 val extension = file.name.substringAfterLast('.', "").lowercase()
-                
+
                 // Determine file item layout class and icon
-                val (itemClass, icon) = when {
-                    isDir -> Pair("dir", "📁")
-                    extension in listOf("jpg", "jpeg", "png", "gif", "webp", "svg") -> Pair("image", "🖼️")
-                    extension in listOf("mp4", "mkv", "avi", "mov", "webm") -> Pair("video", "🎥")
-                    extension in listOf("mp3", "wav", "flac", "ogg", "m4a") -> Pair("audio", "🎵")
-                    extension in listOf("zip", "rar", "tar", "gz", "7z", "iso") -> Pair("archive", "📦")
-                    extension in listOf("pdf") -> Pair("doc", "📕")
-                    extension in listOf("txt", "md", "json", "xml", "html", "js", "ts", "kt", "css") -> Pair("doc", "📝")
-                    extension in listOf("apk") -> Pair("doc", "🤖")
-                    extension in listOf("doc", "docx", "xls", "xlsx", "ppt", "pptx") -> Pair("doc", "💼")
-                    else -> Pair("other", "📄")
-                }
-                
+                val (itemClass, icon) =
+                    when {
+                        isDir -> Pair("dir", "📁")
+                        extension in listOf("jpg", "jpeg", "png", "gif", "webp", "svg") -> Pair("image", "🖼️")
+                        extension in listOf("mp4", "mkv", "avi", "mov", "webm") -> Pair("video", "🎥")
+                        extension in listOf("mp3", "wav", "flac", "ogg", "m4a") -> Pair("audio", "🎵")
+                        extension in listOf("zip", "rar", "tar", "gz", "7z", "iso") -> Pair("archive", "📦")
+                        extension in listOf("pdf") -> Pair("doc", "📕")
+                        extension in listOf("txt", "md", "json", "xml", "html", "js", "ts", "kt", "css") -> Pair("doc", "📝")
+                        extension in listOf("apk") -> Pair("doc", "🤖")
+                        extension in listOf("doc", "docx", "xls", "xlsx", "ppt", "pptx") -> Pair("doc", "💼")
+                        else -> Pair("other", "📄")
+                    }
+
                 val typeName = if (isDir) directoryLabel else fileLabel
-                val sizeText = if (isDir) {
-                    "--"
-                } else {
-                    formatFileSize(file.size, sizeLabel)
-                }
+                val sizeText =
+                    if (isDir) {
+                        "--"
+                    } else {
+                        formatFileSize(file.size, sizeLabel)
+                    }
 
                 val downloadFilename = if (isDir) "${file.name}.zip" else file.name
 
-                val actionButtons = if (isDir && file.browseUrl != null) {
-                    """
-                    <div class="file-actions">
-                        <a href="${file.browseUrl}" class="action-btn btn-primary">${escapeHtml(openButtonLabel)}</a>
-                        <a href="${file.downloadUrl}" download="${escapeHtml(downloadFilename)}" class="action-btn btn-outline">ZIP</a>
-                    </div>
-                    """.trimIndent()
-                } else {
-                    """
-                    <div class="file-actions">
-                        <a href="${file.downloadUrl}" download="${escapeHtml(downloadFilename)}" class="action-btn btn-primary">${escapeHtml(downloadButtonLabel)}</a>
-                    </div>
-                    """.trimIndent()
-                }
+                val actionButtons =
+                    if (isDir && file.browseUrl != null) {
+                        """
+                        <div class="file-actions">
+                            <a href="${file.browseUrl}" class="action-btn btn-primary">${escapeHtml(openButtonLabel)}</a>
+                            <a href="${file.downloadUrl}" download="${escapeHtml(downloadFilename)}" class="action-btn btn-outline">ZIP</a>
+                        </div>
+                        """.trimIndent()
+                    } else {
+                        """
+                        <div class="file-actions">
+                            <a href="${file.downloadUrl}" download="${escapeHtml(
+                            downloadFilename,
+                        )}" class="action-btn btn-primary">${escapeHtml(downloadButtonLabel)}</a>
+                        </div>
+                        """.trimIndent()
+                    }
 
-                itemsHtml.append("""
+                itemsHtml.append(
+                    """
                     <div class="file-item $itemClass">
                         <div class="file-info">
                             <span class="file-icon">$icon</span>
@@ -144,25 +155,31 @@ object WebTemplates {
                         <div class="file-size">${escapeHtml(sizeText)}</div>
                         $actionButtons
                     </div>
-                """.trimIndent())
+                    """.trimIndent(),
+                )
             }
         }
 
-        val breadcrumbsHtml = breadcrumbs.joinToString(" <span>/</span> ") { (name, url) ->
-            if (url.isEmpty()) "<span>${escapeHtml(name)}</span>"
-            else "<a href=\"$url\">${escapeHtml(name)}</a>"
-        }
+        val breadcrumbsHtml =
+            breadcrumbs.joinToString(" <span>/</span> ") { (name, url) ->
+                if (url.isEmpty()) {
+                    "<span>${escapeHtml(name)}</span>"
+                } else {
+                    "<a href=\"$url\">${escapeHtml(name)}</a>"
+                }
+            }
 
-        val searchBarHtml = if (files.isNotEmpty()) {
-            """
-            <div class="search-wrapper">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" class="search-input" placeholder="Search files..." onkeyup="filterFiles()">
-            </div>
-            """.trimIndent()
-        } else {
-            ""
-        }
+        val searchBarHtml =
+            if (files.isNotEmpty()) {
+                """
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search files..." onkeyup="filterFiles()">
+                </div>
+                """.trimIndent()
+            } else {
+                ""
+            }
 
         return filesHtml
             .replace("{dir}", getDirectionHtml())
@@ -175,13 +192,16 @@ object WebTemplates {
 
     private fun escapeHtml(str: String): String {
         return str.replace("&", "&amp;")
-                  .replace("<", "&lt;")
-                  .replace(">", "&gt;")
-                  .replace("\"", "&quot;")
-                  .replace("'", "&#x27;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace("\"", "&quot;")
+            .replace("'", "&#x27;")
     }
 
-    private fun formatFileSize(size: Long, sizeLabel: String): String {
+    private fun formatFileSize(
+        size: Long,
+        sizeLabel: String,
+    ): String {
         if (size <= 0) return "0 B"
         val units = arrayOf("B", "KB", "MB", "GB", "TB")
         val digitGroups = (Math.log10(size.toDouble()) / Math.log10(1024.0)).toInt()

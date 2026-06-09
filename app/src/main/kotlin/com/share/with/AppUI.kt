@@ -53,40 +53,43 @@ fun AppUI() {
 
     var showPickerMode by remember { mutableStateOf<Boolean?>(null) }
 
-    val manageStorageLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.StartActivityForResult(),
-        onResult = {
-            if (hasStoragePermission(context)) {
-                AppState.addLog("Storage permission granted")
-            } else {
-                AppState.addLog("Warning: Storage permission not granted")
-            }
-        }
-    )
+    val manageStorageLauncher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.StartActivityForResult(),
+            onResult = {
+                if (hasStoragePermission(context)) {
+                    AppState.addLog("Storage permission granted")
+                } else {
+                    AppState.addLog("Warning: Storage permission not granted")
+                }
+            },
+        )
 
-    val legacyStorageLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission(),
-        onResult = { isGranted ->
-            if (isGranted) {
-                AppState.addLog("Storage permission granted")
-            } else {
-                AppState.addLog("Warning: Storage permission not granted")
-            }
-        }
-    )
+    val legacyStorageLauncher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.RequestPermission(),
+            onResult = { isGranted ->
+                if (isGranted) {
+                    AppState.addLog("Storage permission granted")
+                } else {
+                    AppState.addLog("Warning: Storage permission not granted")
+                }
+            },
+        )
 
-    val notificationPermissionLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission(),
-        onResult = { isGranted ->
-            if (isGranted) {
-                AppState.addLog("Notification permission granted")
-            } else {
-                AppState.addLog("Warning: Notification permission denied. Background service status might not be visible.")
-            }
-            AppState.detectLocalIp()
-            FileSharingService.startService(context)
-        }
-    )
+    val notificationPermissionLauncher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.RequestPermission(),
+            onResult = { isGranted ->
+                if (isGranted) {
+                    AppState.addLog("Notification permission granted")
+                } else {
+                    AppState.addLog("Warning: Notification permission denied. Background service status might not be visible.")
+                }
+                AppState.detectLocalIp()
+                FileSharingService.startService(context)
+            },
+        )
 
     val checkAndOpenPicker = { isDir: Boolean ->
         if (hasStoragePermission(context)) {
@@ -96,11 +99,12 @@ fun AppUI() {
         }
     }
 
-    val layoutDirection = if (AppState.selectedLanguage == "he" || AppState.selectedLanguage == "ar") {
-        LayoutDirection.Rtl
-    } else {
-        LayoutDirection.Ltr
-    }
+    val layoutDirection =
+        if (AppState.selectedLanguage == "he" || AppState.selectedLanguage == "ar") {
+            LayoutDirection.Rtl
+        } else {
+            LayoutDirection.Ltr
+        }
 
     showPickerMode?.let { isDir ->
         InAppFilePickerDialog(
@@ -108,7 +112,7 @@ fun AppUI() {
             onDismiss = { showPickerMode = null },
             onPathSelected = { file ->
                 AppState.addSharedItem(file, isDir)
-            }
+            },
         )
     }
 
@@ -121,64 +125,68 @@ fun AppUI() {
                             title = {
                                 Text(
                                     text = stringResource(R.string.app_name),
-                                    style = MaterialTheme.typography.titleLarge.copy(
-                                        fontWeight = FontWeight.Bold,
-                                        color = MaterialTheme.colorScheme.primary
-                                    )
+                                    style =
+                                        MaterialTheme.typography.titleLarge.copy(
+                                            fontWeight = FontWeight.Bold,
+                                            color = MaterialTheme.colorScheme.primary,
+                                        ),
                                 )
                             },
-                            colors = TopAppBarDefaults.topAppBarColors(
-                                containerColor = MaterialTheme.colorScheme.surface
-                            )
+                            colors =
+                                TopAppBarDefaults.topAppBarColors(
+                                    containerColor = MaterialTheme.colorScheme.surface,
+                                ),
                         )
                     },
                     bottomBar = {
                         NavigationBar(
                             containerColor = MaterialTheme.colorScheme.surface,
-                            tonalElevation = 8.dp
+                            tonalElevation = 8.dp,
                         ) {
                             NavigationBarItem(
                                 icon = { Icon(Icons.AutoMirrored.Filled.Send, contentDescription = null) },
                                 label = { Text(stringResource(R.string.tab_share)) },
                                 selected = currentTab == "Share",
-                                onClick = { currentTab = "Share" }
+                                onClick = { currentTab = "Share" },
                             )
                             NavigationBarItem(
                                 icon = { Icon(Icons.Default.Settings, contentDescription = null) },
                                 label = { Text(stringResource(R.string.tab_settings)) },
                                 selected = currentTab == "Settings",
-                                onClick = { currentTab = "Settings" }
+                                onClick = { currentTab = "Settings" },
                             )
                             NavigationBarItem(
                                 icon = { Icon(Icons.AutoMirrored.Filled.List, contentDescription = null) },
                                 label = { Text(stringResource(R.string.tab_logs)) },
                                 selected = currentTab == "Logs",
-                                onClick = { currentTab = "Logs" }
+                                onClick = { currentTab = "Logs" },
                             )
                         }
-                    }
+                    },
                 ) { paddingValues ->
                     Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(paddingValues)
-                            .background(MaterialTheme.colorScheme.background)
-                            .padding(16.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .padding(paddingValues)
+                                .background(MaterialTheme.colorScheme.background)
+                                .padding(16.dp),
                     ) {
                         AnimatedContent(
                             targetState = currentTab,
                             transitionSpec = {
                                 fadeIn() togetherWith fadeOut()
-                            }
+                            },
                         ) { tab ->
                             when (tab) {
-                                "Share" -> ShareTab(
-                                    onAddFile = { checkAndOpenPicker(false) },
-                                    onAddFolder = { checkAndOpenPicker(true) },
-                                    onRequestNotificationPermission = {
-                                        notificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
-                                    }
-                                )
+                                "Share" ->
+                                    ShareTab(
+                                        onAddFile = { checkAndOpenPicker(false) },
+                                        onAddFolder = { checkAndOpenPicker(true) },
+                                        onRequestNotificationPermission = {
+                                            notificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                                        },
+                                    )
                                 "Settings" -> SettingsTab()
                                 "Logs" -> LogsTab()
                             }

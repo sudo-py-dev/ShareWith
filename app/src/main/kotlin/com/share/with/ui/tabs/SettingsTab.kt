@@ -1,8 +1,8 @@
 package com.share.with.ui.tabs
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,7 +32,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.foundation.layout.Row
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -57,33 +56,33 @@ fun SettingsTab() {
     val coroutineScope = rememberCoroutineScope()
     var showPassword by remember { mutableStateOf(false) }
     var portError by remember { mutableStateOf<String?>(null) }
-    
+
     val portValidationInvalidStr = stringResource(R.string.port_validation_invalid)
     val portValidationCollisionStr = stringResource(R.string.port_validation_collision)
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = androidx.compose.foundation.layout.PaddingValues(bottom = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         // Network settings Card
         item {
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(
                         text = stringResource(R.string.connection_settings_header),
-                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                     )
                     Spacer(modifier = Modifier.height(12.dp))
 
                     Text(
                         text = stringResource(R.string.port_label),
                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                     )
                     OutlinedTextField(
                         value = AppState.portInput,
@@ -95,9 +94,10 @@ fun SettingsTab() {
                                     portError = portValidationInvalidStr
                                 } else {
                                     coroutineScope.launch {
-                                        val available = withContext(Dispatchers.IO) {
-                                            isPortAvailable(parsedPort)
-                                        }
+                                        val available =
+                                            withContext(Dispatchers.IO) {
+                                                isPortAvailable(parsedPort)
+                                            }
                                         if (!available) {
                                             portError = portValidationCollisionStr
                                         } else {
@@ -115,10 +115,11 @@ fun SettingsTab() {
                             }
                         },
                         enabled = !AppState.serverRunning,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 8.dp),
-                        singleLine = true
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(top = 8.dp),
+                        singleLine = true,
                     )
                 }
             }
@@ -129,21 +130,21 @@ fun SettingsTab() {
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
                     Text(
                         text = stringResource(R.string.security_header),
-                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                     )
 
                     Text(
                         text = stringResource(R.string.security_mode_label),
                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                     )
 
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -151,21 +152,21 @@ fun SettingsTab() {
                             title = stringResource(R.string.security_mode_none),
                             description = stringResource(R.string.security_mode_none_desc),
                             selected = AppState.securityMode == SecurityMode.NONE,
-                            onClick = { AppState.updateSecurityMode(SecurityMode.NONE) }
+                            onClick = { AppState.updateSecurityMode(SecurityMode.NONE) },
                         )
-                        
+
                         SecurityOptionRow(
                             title = stringResource(R.string.security_mode_password),
                             description = stringResource(R.string.security_mode_password_desc),
                             selected = AppState.securityMode == SecurityMode.PASSWORD,
-                            onClick = { AppState.updateSecurityMode(SecurityMode.PASSWORD) }
+                            onClick = { AppState.updateSecurityMode(SecurityMode.PASSWORD) },
                         )
 
                         SecurityOptionRow(
                             title = stringResource(R.string.security_mode_approval),
                             description = stringResource(R.string.security_mode_approval_desc),
                             selected = AppState.securityMode == SecurityMode.MANUAL_APPROVAL,
-                            onClick = { AppState.updateSecurityMode(SecurityMode.MANUAL_APPROVAL) }
+                            onClick = { AppState.updateSecurityMode(SecurityMode.MANUAL_APPROVAL) },
                         )
                     }
 
@@ -174,7 +175,7 @@ fun SettingsTab() {
                         Text(
                             text = stringResource(R.string.password_label),
                             style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                         )
                         OutlinedTextField(
                             value = AppState.password,
@@ -186,13 +187,14 @@ fun SettingsTab() {
                                 IconButton(onClick = { showPassword = !showPassword }) {
                                     Icon(
                                         imageVector = if (showPassword) Icons.Default.VisibilityOff else Icons.Default.Visibility,
-                                        contentDescription = "Toggle password visibility"
+                                        contentDescription = "Toggle password visibility",
                                     )
                                 }
                             },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 4.dp)
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 4.dp),
                         )
                     }
                 }
@@ -204,15 +206,15 @@ fun SettingsTab() {
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
                     Text(
                         text = stringResource(R.string.appearance_interface_header),
-                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                     )
 
                     // Theme selector
@@ -220,31 +222,35 @@ fun SettingsTab() {
                         Text(
                             text = stringResource(R.string.theme_label),
                             style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                         )
-                        
-                        val themeOptions = listOf(
-                            stringResource(R.string.theme_system),
-                            stringResource(R.string.theme_light),
-                            stringResource(R.string.theme_dark)
-                        )
-                        val themeIndex = when (AppState.selectedTheme) {
-                            "System" -> 0
-                            "Light" -> 1
-                            "Dark" -> 2
-                            else -> 0
-                        }
+
+                        val themeOptions =
+                            listOf(
+                                stringResource(R.string.theme_system),
+                                stringResource(R.string.theme_light),
+                                stringResource(R.string.theme_dark),
+                            )
+                        val themeIndex =
+                            when (AppState.selectedTheme) {
+                                "System" -> 0
+                                "Light" -> 1
+                                "Dark" -> 2
+                                else -> 0
+                            }
                         SegmentedControl(
                             options = themeOptions,
                             selectedIndex = themeIndex,
                             onOptionSelected = { index ->
-                                AppState.updateTheme(when (index) {
-                                    0 -> "System"
-                                    1 -> "Light"
-                                    2 -> "Dark"
-                                    else -> "System"
-                                })
-                            }
+                                AppState.updateTheme(
+                                    when (index) {
+                                        0 -> "System"
+                                        1 -> "Light"
+                                        2 -> "Dark"
+                                        else -> "System"
+                                    },
+                                )
+                            },
                         )
                     }
 
@@ -255,51 +261,54 @@ fun SettingsTab() {
                         Text(
                             text = stringResource(R.string.language_label),
                             style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                         )
-                        
+
                         var langExpanded by remember { mutableStateOf(false) }
-                        val languageOptions = listOf(
-                            "en" to stringResource(R.string.language_en),
-                            "he" to stringResource(R.string.language_he),
-                            "fr" to stringResource(R.string.language_fr),
-                            "ru" to stringResource(R.string.language_ru),
-                            "es" to stringResource(R.string.language_es),
-                            "ar" to stringResource(R.string.language_ar)
-                        )
+                        val languageOptions =
+                            listOf(
+                                "en" to stringResource(R.string.language_en),
+                                "he" to stringResource(R.string.language_he),
+                                "fr" to stringResource(R.string.language_fr),
+                                "ru" to stringResource(R.string.language_ru),
+                                "es" to stringResource(R.string.language_es),
+                                "ar" to stringResource(R.string.language_ar),
+                            )
                         val currentLangName = languageOptions.find { it.first == AppState.selectedLanguage }?.second ?: stringResource(R.string.language_en)
 
                         ExposedDropdownMenuBox(
                             expanded = langExpanded,
-                            onExpandedChange = { langExpanded = !langExpanded }
+                            onExpandedChange = { langExpanded = !langExpanded },
                         ) {
                             OutlinedTextField(
                                 value = currentLangName,
                                 onValueChange = {},
                                 readOnly = true,
                                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = langExpanded) },
-                                modifier = Modifier
-                                    .menuAnchor(MenuAnchorType.PrimaryNotEditable, true)
-                                    .fillMaxWidth(),
+                                modifier =
+                                    Modifier
+                                        .menuAnchor(MenuAnchorType.PrimaryNotEditable, true)
+                                        .fillMaxWidth(),
                                 shape = RoundedCornerShape(8.dp),
-                                colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors()
+                                colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
                             )
                             ExposedDropdownMenu(
                                 expanded = langExpanded,
-                                onDismissRequest = { langExpanded = false }
+                                onDismissRequest = { langExpanded = false },
                             ) {
                                 languageOptions.forEach { (code, name) ->
                                     DropdownMenuItem(
                                         text = { Text(name) },
                                         onClick = {
                                             AppState.updateLanguage(code)
-                                            val locale = when (code) {
-                                                "he" -> Locale.forLanguageTag("he")
-                                                else -> Locale.forLanguageTag(code)
-                                            }
+                                            val locale =
+                                                when (code) {
+                                                    "he" -> Locale.forLanguageTag("he")
+                                                    else -> Locale.forLanguageTag(code)
+                                                }
                                             Locale.setDefault(locale)
                                             langExpanded = false
-                                        }
+                                        },
                                     )
                                 }
                             }
@@ -315,22 +324,22 @@ fun SettingsTab() {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                 ) {
                     Column(
                         modifier = Modifier.padding(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
                         Text(
                             text = stringResource(R.string.blocked_ips_header),
-                            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+                            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                         )
-                        
+
                         for (ip in AppState.blockedIps) {
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween,
-                                verticalAlignment = Alignment.CenterVertically
+                                verticalAlignment = Alignment.CenterVertically,
                             ) {
                                 Text(text = ip, style = MaterialTheme.typography.bodyMedium)
                                 androidx.compose.material3.TextButton(onClick = { AppState.unblockIp(ip) }) {

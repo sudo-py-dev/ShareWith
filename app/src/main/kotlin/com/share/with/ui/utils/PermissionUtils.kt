@@ -13,7 +13,7 @@ fun hasStoragePermission(context: Context): Boolean {
     } else {
         androidx.core.content.ContextCompat.checkSelfPermission(
             context,
-            android.Manifest.permission.READ_EXTERNAL_STORAGE
+            android.Manifest.permission.READ_EXTERNAL_STORAGE,
         ) == android.content.pm.PackageManager.PERMISSION_GRANTED
     }
 }
@@ -21,13 +21,14 @@ fun hasStoragePermission(context: Context): Boolean {
 fun requestStoragePermission(
     context: Context,
     activityLauncher: androidx.activity.result.ActivityResultLauncher<Intent>?,
-    permissionLauncher: androidx.activity.result.ActivityResultLauncher<String>?
+    permissionLauncher: androidx.activity.result.ActivityResultLauncher<String>?,
 ) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         try {
-            val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION).apply {
-                data = Uri.parse("package:${context.packageName}")
-            }
+            val intent =
+                Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION).apply {
+                    data = Uri.parse("package:${context.packageName}")
+                }
             activityLauncher?.launch(intent)
         } catch (e: Exception) {
             val intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
