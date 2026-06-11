@@ -15,6 +15,9 @@ import java.net.NetworkInterface
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 data class PendingConnection(
     val token: String,
@@ -91,7 +94,9 @@ object AppState {
     var localIp by mutableStateOf<String?>(null)
 
     val sharedItems = mutableStateListOf<SharedItem>()
-    val logs = mutableStateListOf<String>()
+    private val logBuffer = java.util.ArrayDeque<String>(501)
+    private val _logsFlow = MutableStateFlow<List<String>>(emptyList())
+    val logsFlow: StateFlow<List<String>> = _logsFlow.asStateFlow()
 
     fun updateTheme(theme: String) {
         selectedTheme = theme
@@ -268,17 +273,18 @@ object AppState {
         val time = SimpleDateFormat("HH:mm:ss", Locale.US).format(Date())
         val formattedLog = "[$time] $sanitizedMessage"
         synchronized(lock) {
-            logs.add(0, formattedLog)
-            // Keep logs capped at 1000 items to prevent memory issues
-            if (logs.size > 1000) {
-                logs.removeAt(logs.size - 1)
+            logBuffer.addFirst(formattedLog)
+            if (logBuffer.size > 500) {
+                logBuffer.removeLast()
             }
+            _logsFlow.value = logBuffer.toList()
         }
     }
 
     fun clearLogs() {
         synchronized(lock) {
-            logs.clear()
+            logBuffer.clear()
+            _logsFlow.value = emptyList()
         }
     }
 
