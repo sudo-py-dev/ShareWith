@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShareWith</string>
+    <string name="tab_share">Partager</string>
+    <string name="tab_settings">Paramètres</string>
+    <string name="tab_logs">Journaux</string>
+    
+    <!-- Share Screen -->
+    <string name="server_status">Statut du serveur</string>
+    <string name="status_running">En cours d\'exécution</string>
+    <string name="status_stopped">Arrêté</string>
+    <string name="status_starting">Démarrage…</string>
+    <string name="status_stopping">Arrêt en cours…</string>
+    <string name="server_address">Adresse du serveur</string>
+    <string name="scan_qr_code">Scannez le code QR pour vous connecter :</string>
+    <string name="start_server">Démarrer le serveur</string>
+    <string name="stop_server">Arrêter le serveur</string>
+    <string name="shared_files_header">Fichiers et dossiers partagés</string>
+    <string name="add_file_button">Ajouter un fichier</string>
+    <string name="add_folder_button">Ajouter un dossier</string>
+    <string name="copy_link_button">Copier le lien</string>
+    <string name="share_link_button">Partager le lien</string>
+    <string name="clear_all_button">Tout effacer</string>
+    <string name="empty_shared_list">Aucun fichier sélectionné. Ajoutez des fichiers pour commencer le partage.</string>
+    
+    <!-- Security & Clients Card -->
+    <string name="clients_header">Clients et connexions</string>
+    <string name="active_sessions">Connexions actives</string>
+    <string name="pending_approvals">Autorisations en attente</string>
+    <string name="no_pending_approvals">Aucune autorisation en attente</string>
+    <string name="no_active_sessions">Aucune connexion active</string>
+    <string name="approve_button">Approuver</string>
+    <string name="reject_button">Rejeter</string>
+    
+    <!-- Settings Screen -->
+    <string name="connection_settings_header">Configuration de la connexion</string>
+    <string name="appearance_interface_header">Apparence et interface</string>
+    <string name="port_label">Numéro de port HTTP</string>
+    <string name="port_validation_invalid">Entrez un port valide (1–65535)</string>
+    <string name="port_validation_collision">Port déjà utilisé</string>
+    <string name="security_header">Sécurité et protection</string>
+    <string name="security_mode_label">Méthode de protection</string>
+    <string name="security_mode_none">Aucune (Ouvert au réseau local)</string>
+    <string name="security_mode_none_desc">Toute personne sur le même réseau peut accéder immédiatement aux fichiers partagés.</string>
+    <string name="security_mode_password">Protection par mot de passe</string>
+    <string name="security_mode_password_desc">Les clients doivent entrer un mot de passe préconfiguré pour y accéder.</string>
+    <string name="security_mode_approval">Approbation au cas par cas</string>
+    <string name="security_mode_approval_desc">Approuver ou rejeter manuellement chaque demande de connexion de périphérique.</string>
+    <string name="password_label">Mot de passe d\'accès</string>
+    <string name="password_placeholder">Entrez le mot de passe d\'accès</string>
+    <string name="theme_label">Mode de thème</string>
+    <string name="theme_system">Par défaut du système</string>
+    <string name="theme_light">Mode clair</string>
+    <string name="theme_dark">Mode sombre</string>
+    <string name="language_label">Langue de l\'interface</string>
+    <string name="language_en">English</string>
+    <string name="language_he">עברית (Hebrew)</string>
+    <string name="language_fr">Français (French)</string>
+    <string name="language_ru">Русский (Russian)</string>
+    <string name="language_es">Español (Spanish)</string>
+    <string name="language_ar">العربية (Arabic)</string>
+    
+    <!-- Logs Screen -->
+    <string name="logs_header">Journaux du serveur et des connexions</string>
+    <string name="clear_logs_button">Effacer les journaux</string>
+    <string name="empty_logs">Aucun journal disponible</string>
+    
+    <!-- Server Page Web UI -->
+    <string name="web_login_title">Accès sécurisé au téléchargement de fichiers</string>
+    <string name="web_login_password_placeholder">Entrez le mot de passe du serveur</string>
+    <string name="web_login_button">Accéder aux fichiers</string>
+    <string name="web_login_error">Mot de passe incorrect. Accès refusé.</string>
+    <string name="web_waiting_approval_title">Autorisation requise</string>
+    <string name="web_waiting_approval_message">En attente de l\'administrateur du serveur pour approuver votre connexion. Cette page s\'actualisera automatiquement…</string>
+    <string name="web_approved_title">Connexion approuvée</string>
+    <string name="web_approved_message">Redirection vers vos fichiers…</string>
+    <string name="web_rejected_title">Connexion refusée</string>
+    <string name="web_rejected_message">Votre demande de connexion a été refusée par l\'administrateur du serveur.</string>
+    <string name="web_file_list_title">Fichiers partagés</string>
+    <string name="web_file_list_empty">Aucun fichier partagé ici</string>
+    <string name="web_download_button">Télécharger</string>
+    <string name="web_preview_button">Aperçu</string>
+    <string name="web_open_button">Ouvrir</string>
+    <string name="web_download_folder_note">(Téléchargé en ZIP)</string>
+    <string name="web_size_label">Taille</string>
+    <string name="web_type_label">Type</string>
+    <string name="web_directory_label">Dossier</string>
+    <string name="web_file_label">Fichier</string>
+    <string name="web_header_name">Nom</string>
+    <string name="web_header_actions">Actions</string>
+    <string name="web_search_placeholder">Rechercher des fichiers…</string>
+    <string name="web_empty_search_results">Aucun fichier correspondant trouvé</string>
+    
+    <string name="blocked_ips_header">Appareils Bloqués</string>
+    <string name="unblock_button">Débloquer</string>
+
+    <string name="notif_channel_service_name">Service de Partage de Fichiers</string>
+    <string name="notif_channel_service_desc">Maintient le serveur de fichiers en arrière-plan</string>
+    <string name="notif_server_running_title">Serveur de Fichiers en Cours</string>
+    <string name="notif_server_access_at">Accès sur %1$s</string>
+    <string name="notif_action_stop">Arrêter</string>
+
+    <string name="notif_channel_request_name">Demandes d\'Accès</string>
+    <string name="notif_channel_request_desc">Notifications pour les demandes de connexion des clients</string>
+    <string name="notif_request_title">Demande d\'accès de %1$s</string>
+    <string name="notif_request_desc">Appareil : %1$s</string>
+    
+    <!-- Battery Optimization -->
+    <string name="battery_optimization_header">Stabilité en arrière-plan</string>
+    <string name="battery_optimization_desc">Les paramètres système d\'Android peuvent suspendre ou fermer le serveur lorsque l\'application passe en arrière-plan. Désactiver l\'optimisation de la batterie garantit un partage stable.</string>
+    <string name="battery_optimization_button">Optimiser les paramètres</string>
+    <string name="battery_optimization_status_enabled">Optimisation de la batterie ACTIVE (arrière-plan instable)</string>
+
+    <string name="picker_select_folder">Sélectionner le dossier</string>
+    <string name="picker_select_file">Sélectionner le fichier</string>
+    <string name="picker_go_up">.. (Monter)</string>
+    <string name="cancel_button">Annuler</string>
+
+    <string name="log_url_copied">URL du serveur copiée dans le presse-papiers</string>
+    <string name="log_url_shared">URL du serveur partagée</string>
+    <string name="log_item_shared">URL de l\'élément partagée : %1$s</string>
+    <string name="log_path_removed">Chemin partagé supprimé : %1$s</string>
+    <string name="log_all_cleared">Tous les chemins partagés ont été effacés</string>
+    <string name="log_warning_stopped">Avertissement : Impossible de partager lorsque le serveur est arrêté</string>
+
+    <!-- Crash Screen -->
+    <string name="crash_title">Échec critique de l\'application</string>
+    <string name="crash_message">L\'application s\'est arrêtée en raison d\'une erreur critique.</string>
+    <string name="crash_restart_button">Redémarrer l\'application</string>
+    <string name="crash_no_stack_trace">Aucune trace de pile disponible</string>
+    <string name="crash_unknown_error">Erreur inconnue</string>
+</resources>

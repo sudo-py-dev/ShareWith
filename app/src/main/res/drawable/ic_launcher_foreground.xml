@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Inner glowing circle/gradient for the background highlight of the logo -->
+    <path
+        android:pathData="M54,54m-24,0a24,24 0,1 1,48 0a24,24 0,1 1,-48 0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="30"
+                android:startY="30"
+                android:endX="78"
+                android:endY="78"
+                android:type="linear">
+                <item android:offset="0" android:color="#3F51B5"/>
+                <item android:offset="1" android:color="#00BCD4"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Sharing nodes/lines -->
+    <path
+        android:pathData="M42,54m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+        android:fillColor="#FFFFFF"/>
+
+    <path
+        android:pathData="M66,38m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+        android:fillColor="#FFFFFF"/>
+
+    <path
+        android:pathData="M66,70m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+        android:fillColor="#FFFFFF"/>
+
+    <path
+        android:pathData="M42,54 L66,38"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"/>
+
+    <path
+        android:pathData="M42,54 L66,70"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"/>
+
+    <!-- Stylized send/receive wave -->
+    <path
+        android:pathData="M 32 38 C 24 46, 24 62, 32 70"
+        android:strokeColor="#00BCD4"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"/>
+
+    <path
+        android:pathData="M 26 32 C 14 44, 14 64, 26 76"
+        android:strokeColor="#3F51B5"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"/>
+</vector>

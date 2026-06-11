@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShareWith</string>
+    <string name="tab_share">مشاركة</string>
+    <string name="tab_settings">الإعدادات</string>
+    <string name="tab_logs">السجلات</string>
+    
+    <!-- Share Screen -->
+    <string name="server_status">حالة الخادم</string>
+    <string name="status_running">يعمل</string>
+    <string name="status_stopped">متوقف</string>
+    <string name="status_starting">جاري التشغيل…</string>
+    <string name="status_stopping">جاري الإيقاف…</string>
+    <string name="server_address">عنوان الخادم</string>
+    <string name="scan_qr_code">امسح رمز QR للاتصال:</string>
+    <string name="start_server">تشغيل الخادم</string>
+    <string name="stop_server">إيقاف الخادم</string>
+    <string name="shared_files_header">الملفات والمجلدات المشتركة</string>
+    <string name="add_file_button">إضافة ملف</string>
+    <string name="add_folder_button">إضافة مجلد</string>
+    <string name="copy_link_button">نسخ الرابط</string>
+    <string name="share_link_button">مشاركة الرابط</string>
+    <string name="clear_all_button">مسح الكل</string>
+    <string name="empty_shared_list">لم يتم تحديد أي ملفات. أضف بعض الملفات لبدء المشاركة.</string>
+    
+    <!-- Security & Clients Card -->
+    <string name="clients_header">الأجهزة والاتصالات</string>
+    <string name="active_sessions">الاتصالات النشطة</string>
+    <string name="pending_approvals">الموافقات المعلقة</string>
+    <string name="no_pending_approvals">لا توجد موافقات معلقة</string>
+    <string name="no_active_sessions">لا توجد اتصالات نشطة</string>
+    <string name="approve_button">موافقة</string>
+    <string name="reject_button">رفض</string>
+    
+    <!-- Settings Screen -->
+    <string name="connection_settings_header">إعدادات الاتصال</string>
+    <string name="appearance_interface_header">المظهر والواجهة</string>
+    <string name="port_label">رقم منفذ HTTP</string>
+    <string name="port_validation_invalid">أدخل منفذًا صالحًا (1–65535)</string>
+    <string name="port_validation_collision">المنفذ مستخدم بالفعل</string>
+    <string name="security_header">الأمان والحماية</string>
+    <string name="security_mode_label">طريقة الحماية</string>
+    <string name="security_mode_none">بدون حماية (مفتوح للشبكة المحلية)</string>
+    <string name="security_mode_none_desc">يمكن لأي شخص على نفس الشبكة الوصول إلى الملفات المشتركة على الفور.</string>
+    <string name="security_mode_password">الحماية بكلمة مرور</string>
+    <string name="security_mode_password_desc">يجب على المستخدمين إدخال كلمة مرور مسبقة الإعداد للوصول.</string>
+    <string name="security_mode_approval">موافقة فردية</string>
+    <string name="security_mode_approval_desc">الموافقة أو الرفض يدويًا لطلب اتصال كل جهاز.</string>
+    <string name="password_label">كلمة مرور الوصول</string>
+    <string name="password_placeholder">أدخل كلمة مرور الوصول</string>
+    <string name="theme_label">وضع المظهر</string>
+    <string name="theme_system">تلقائي حسب النظام</string>
+    <string name="theme_light">الوضع الفاتح</string>
+    <string name="theme_dark">الوضع الداكن</string>
+    <string name="language_label">لغة الواجهة</string>
+    <string name="language_en">English</string>
+    <string name="language_he">עברית (Hebrew)</string>
+    <string name="language_fr">Français (French)</string>
+    <string name="language_ru">Русский (Russian)</string>
+    <string name="language_es">Español (Spanish)</string>
+    <string name="language_ar">العربية (Arabic)</string>
+    
+    <!-- Logs Screen -->
+    <string name="logs_header">سجلات الخادم والاتصال</string>
+    <string name="clear_logs_button">مسح السجلات</string>
+    <string name="empty_logs">لا توجد سجلات متاحة</string>
+    
+    <!-- Server Page Web UI -->
+    <string name="web_login_title">وصول آمن لتنزيل الملفات</string>
+    <string name="web_login_password_placeholder">أدخل كلمة مرور الخادم</string>
+    <string name="web_login_button">الوصول للملفات</string>
+    <string name="web_login_error">كلمة مرور غير صالحة. تم رفض الوصول.</string>
+    <string name="web_waiting_approval_title">طلب الاتصال معلق</string>
+    <string name="web_waiting_approval_message">في انتظار موافقة مدير الخادم على اتصالك. ستتحدث هذه الصفحة تلقائيًا…</string>
+    <string name="web_approved_title">تمت الموافقة على الاتصال</string>
+    <string name="web_approved_message">جاري إعادة توجيهك إلى ملفاتك…</string>
+    <string name="web_rejected_title">تم رفض الاتصال</string>
+    <string name="web_rejected_message">تم رفض طلب الاتصال الخاص بك من قبل مدير الخادم.</string>
+    <string name="web_file_list_title">الملفات المشتركة</string>
+    <string name="web_file_list_empty">لا توجد ملفات مشتركة هنا</string>
+    <string name="web_download_button">تنزيل</string>
+    <string name="web_preview_button">معاينة</string>
+    <string name="web_open_button">فتح</string>
+    <string name="web_download_folder_note">(يتم تنزيله كملف ZIP)</string>
+    <string name="web_size_label">الحجم</string>
+    <string name="web_type_label">النوع</string>
+    <string name="web_directory_label">مجلد</string>
+    <string name="web_file_label">ملف</string>
+    <string name="web_header_name">الاسم</string>
+    <string name="web_header_actions">الإجراءات</string>
+    <string name="web_search_placeholder">البحث عن ملفات…</string>
+    <string name="web_empty_search_results">لم يتم العثور على ملفات مطابقة</string>
+    
+    <string name="blocked_ips_header">الأجهزة المحظورة</string>
+    <string name="unblock_button">إلغاء الحظر</string>
+
+    <string name="notif_channel_service_name">خدمة مشاركة الملفات</string>
+    <string name="notif_channel_service_desc">تحافظ على تشغيل خادم الملفات في الخلفية</string>
+    <string name="notif_server_running_title">خادم مشاركة الملفات قيد التشغيل</string>
+    <string name="notif_server_access_at">الدخول عبر %1$s</string>
+    <string name="notif_action_stop">إيقاف</string>
+
+    <string name="notif_channel_request_name">طلبات الوصول</string>
+    <string name="notif_channel_request_desc">إشعارات لطلبات اتصال الأجهزة</string>
+    <string name="notif_request_title">طلب وصول من %1$s</string>
+    <string name="notif_request_desc">الجهاز: %1$s</string>
+    
+    <!-- Battery Optimization -->
+    <string name="battery_optimization_header">استقرار الخلفية</string>
+    <string name="battery_optimization_desc">قد تقوم إعدادات نظام أندرويد بإيقاف الخادم مؤقتًا أو إنهاء تشغيله عندما يكون التطبيق في الخلفية. تعطيل تحسين البطارية يضمن مشاركة ملفات مستقرة.</string>
+    <string name="battery_optimization_button">تحسين الإعدادات</string>
+    <string name="battery_optimization_status_enabled">تحسين البطارية نشط (خلفية غير مستقرة)</string>
+
+    <string name="picker_select_folder">اختر المجلد</string>
+    <string name="picker_select_file">اختر الملف</string>
+    <string name="picker_go_up">.. (للأعلى)</string>
+    <string name="cancel_button">إلغاء</string>
+
+    <string name="log_url_copied">تم نسخ رابط الخادم إلى الحافظة</string>
+    <string name="log_url_shared">تم مشاركة رابط الخادم</string>
+    <string name="log_item_shared">تم مشاركة رابط العنصر: %1$s</string>
+    <string name="log_path_removed">تم إزالة المسار المشترك: %1$s</string>
+    <string name="log_all_cleared">تم مسح جميع المسارات المشتركة</string>
+    <string name="log_warning_stopped">تحذير: لا يمكن المشاركة أثناء توقف الخادم</string>
+
+    <!-- Crash Screen -->
+    <string name="crash_title">فشل حرج في التطبيق</string>
+    <string name="crash_message">توقف التطبيق عن العمل بسبب خطأ حرج.</string>
+    <string name="crash_restart_button">إعادة تشغيل التطبيق</string>
+    <string name="crash_no_stack_trace">لا يوجد تتبع للمكدس متاح</string>
+    <string name="crash_unknown_error">خطأ غير معروف</string>
+</resources>

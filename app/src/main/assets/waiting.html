@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html {dir}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>{title}</title>
+    <script>
+        function checkApproval() {
+            fetch('/approve-check?token={token}')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'approved') {
+                        document.getElementById('waitingContainer').style.display = 'none';
+                        let approvedHtml = `
+                            <div class="container status-card">
+                                <div class="svg-icon-box">
+                                    <svg class="svg-icon" viewBox="0 0 100 100">
+                                        <path class="circle-path" d="M10,50 a40,40 0 1,0 80,0 a40,40 0 1,0 -80,0" fill="none" stroke="var(--success)" stroke-width="6" stroke-linecap="round" />
+                                        <path class="check-path" d="M30,52 L45,67 L70,35" fill="none" stroke="var(--success)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <h1 style="color:var(--success);">{approvedTitle}</h1>
+                                <p class="subtitle" style="margin-bottom:0;">{approvedMessage}</p>
+                            </div>
+                        `;
+                        document.body.innerHTML = approvedHtml;
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1200);
+                    } else if (data.status === 'rejected') {
+                        document.getElementById('waitingContainer').style.display = 'none';
+                        document.getElementById('rejectedContainer').style.display = 'block';
+                    } else {
+                        setTimeout(checkApproval, 2000);
+                    }
+                })
+                .catch(err => {
+                    console.error('Error checking approval:', err);
+                    setTimeout(checkApproval, 3000);
+                });
+        }
+        window.onload = checkApproval;
+    </script>
+</head>
+<body>
+    <div id="waitingContainer" class="container status-card">
+        <div class="pulse-loader">
+            <div class="pulse-ring"></div>
+            <div class="pulse-ring"></div>
+            <div class="pulse-ring"></div>
+            <div class="pulse-center"></div>
+        </div>
+        <h1>{title}</h1>
+        <p class="subtitle" style="margin-bottom:0;">{message}</p>
+    </div>
+
+    <div id="rejectedContainer" class="container status-card" style="display: none;">
+        <div class="svg-icon-box">
+            <svg class="svg-icon" viewBox="0 0 100 100">
+                <path class="circle-path" d="M10,50 a40,40 0 1,0 80,0 a40,40 0 1,0 -80,0" fill="none" stroke="var(--error)" stroke-width="6" stroke-linecap="round" />
+                <path class="cross-path1" d="M35,35 L65,65" fill="none" stroke="var(--error)" stroke-width="6" stroke-linecap="round" />
+                <path class="cross-path2" d="M65,35 L35,65" fill="none" stroke="var(--error)" stroke-width="6" stroke-linecap="round" />
+            </svg>
+        </div>
+        <h1 style="color:var(--error);">{rejectedTitle}</h1>
+        <p class="subtitle" style="margin-bottom:0;">{rejectedMessage}</p>
+    </div>
+</body>
+</html>

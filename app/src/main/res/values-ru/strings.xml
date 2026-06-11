@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShareWith</string>
+    <string name="tab_share">Поделиться</string>
+    <string name="tab_settings">Настройки</string>
+    <string name="tab_logs">Логи</string>
+    
+    <!-- Share Screen -->
+    <string name="server_status">Статус сервера</string>
+    <string name="status_running">Запущен</string>
+    <string name="status_stopped">Остановлен</string>
+    <string name="status_starting">Запуск…</string>
+    <string name="status_stopping">Остановка…</string>
+    <string name="server_address">Адрес сервера</string>
+    <string name="scan_qr_code">Отсканируйте QR-код для подключения:</string>
+    <string name="start_server">Запустить сервер</string>
+    <string name="stop_server">Остановить сервер</string>
+    <string name="shared_files_header">Общие файлы и папки</string>
+    <string name="add_file_button">Добавить файл</string>
+    <string name="add_folder_button">Добавить папку</string>
+    <string name="copy_link_button">Копировать ссылку</string>
+    <string name="share_link_button">Поделиться ссылкой</string>
+    <string name="clear_all_button">Очистить всё</string>
+    <string name="empty_shared_list">Нет выбранных файлов. Добавьте файлы, чтобы начать делиться.</string>
+    
+    <!-- Security & Clients Card -->
+    <string name="clients_header">Клиенты и подключения</string>
+    <string name="active_sessions">Активные подключения</string>
+    <string name="pending_approvals">Ожидающие подтверждения</string>
+    <string name="no_pending_approvals">Нет ожидающих подтверждения</string>
+    <string name="no_active_sessions">Нет активных подключений</string>
+    <string name="approve_button">Одобрить</string>
+    <string name="reject_button">Отклонить</string>
+    
+    <!-- Settings Screen -->
+    <string name="connection_settings_header">Конфигурация подключения</string>
+    <string name="appearance_interface_header">Внешний вид и интерфейс</string>
+    <string name="port_label">Номер порта HTTP</string>
+    <string name="port_validation_invalid">Введите допустимый порт (1–65535)</string>
+    <string name="port_validation_collision">Порт уже используется</string>
+    <string name="security_header">Безопасность и защита</string>
+    <string name="security_mode_label">Метод защиты</string>
+    <string name="security_mode_none">Нет (Открыто для локальной сети)</string>
+    <string name="security_mode_none_desc">Любой пользователь в той же сети может мгновенно получить доступ к общим файлам.</string>
+    <string name="security_mode_password">Защита паролем</string>
+    <string name="security_mode_password_desc">Клиенты должны ввести настроенный пароль для получения доступа.</string>
+    <string name="security_mode_approval">Ручное подтверждение</string>
+    <string name="security_mode_approval_desc">Одобрять или отклонять запрос на подключение каждого устройства вручную.</string>
+    <string name="password_label">Пароль доступа</string>
+    <string name="password_placeholder">Введите пароль доступа</string>
+    <string name="theme_label">Цветовая тема</string>
+    <string name="theme_system">Системная по умолчанию</string>
+    <string name="theme_light">Светлая тема</string>
+    <string name="theme_dark">Темная тема</string>
+    <string name="language_label">Язык интерфейса</string>
+    <string name="language_en">English</string>
+    <string name="language_he">עברית (Hebrew)</string>
+    <string name="language_fr">Français (French)</string>
+    <string name="language_ru">Русский (Russian)</string>
+    <string name="language_es">Español (Spanish)</string>
+    <string name="language_ar">العربية (Arabic)</string>
+    
+    <!-- Logs Screen -->
+    <string name="logs_header">Логи подключений и сервера</string>
+    <string name="clear_logs_button">Очистить логи</string>
+    <string name="empty_logs">Логи отсутствуют</string>
+    
+    <!-- Server Page Web UI -->
+    <string name="web_login_title">Безопасный доступ к скачиванию файлов</string>
+    <string name="web_login_password_placeholder">Введите пароль сервера</string>
+    <string name="web_login_button">Войти к файлам</string>
+    <string name="web_login_error">Неверный пароль. Доступ запрещен.</string>
+    <string name="web_waiting_approval_title">Ожидание подтверждения</string>
+    <string name="web_waiting_approval_message">Ожидание подтверждения вашего подключения администратором сервера. Страница обновится автоматически…</string>
+    <string name="web_approved_title">Подключение одобрено</string>
+    <string name="web_approved_message">Перенаправление к вашим файлам…</string>
+    <string name="web_rejected_title">Подключение отклонено</string>
+    <string name="web_rejected_message">Ваш запрос на подключение был отклонен администратором сервера.</string>
+    <string name="web_file_list_title">Общие файлы</string>
+    <string name="web_file_list_empty">Здесь нет общих файлов</string>
+    <string name="web_download_button">Скачать</string>
+    <string name="web_preview_button">Предпросмотр</string>
+    <string name="web_open_button">Открыть</string>
+    <string name="web_download_folder_note">(Скачивается как ZIP)</string>
+    <string name="web_size_label">Размер</string>
+    <string name="web_type_label">Тип</string>
+    <string name="web_directory_label">Папка</string>
+    <string name="web_file_label">Файл</string>
+    <string name="web_header_name">Имя</string>
+    <string name="web_header_actions">Действия</string>
+    <string name="web_search_placeholder">Поиск файлов…</string>
+    <string name="web_empty_search_results">Совпадающих файлов не найдено</string>
+    
+    <string name="blocked_ips_header">Заблокированные устройства</string>
+    <string name="unblock_button">Разблокировать</string>
+
+    <string name="notif_channel_service_name">Служба обмена файлами</string>
+    <string name="notif_channel_service_desc">Поддерживает работу файлового сервера в фоновом режиме</string>
+    <string name="notif_server_running_title">Сервер обмена файлами запущен</string>
+    <string name="notif_server_access_at">Доступ по адресу %1$s</string>
+    <string name="notif_action_stop">Остановить</string>
+
+    <string name="notif_channel_request_name">Запросы на доступ</string>
+    <string name="notif_channel_request_desc">Уведомления о запросах на подключение клиентов</string>
+    <string name="notif_request_title">Запрос на доступ от %1$s</string>
+    <string name="notif_request_desc">Устройство: %1$s</string>
+    
+    <!-- Battery Optimization -->
+    <string name="battery_optimization_header">Стабильность в фоне</string>
+    <string name="battery_optimization_desc">Настройки Android могут приостанавливать или завершать работу сервера, когда приложение находится в фоновом режиме. Отключение оптимизации батареи обеспечивает стабильный обмен файлами.</string>
+    <string name="battery_optimization_button">Настройки оптимизации</string>
+    <string name="battery_optimization_status_enabled">Оптимизация батареи включена (нестабильная работа)</string>
+
+    <string name="picker_select_folder">Выбрать папку</string>
+    <string name="picker_select_file">Выбрать файл</string>
+    <string name="picker_go_up">.. (Наверх)</string>
+    <string name="cancel_button">Отмена</string>
+
+    <string name="log_url_copied">URL сервера скопирован в буфер обмена</string>
+    <string name="log_url_shared">URL сервера отправлен</string>
+    <string name="log_item_shared">URL элемента отправлен: %1$s</string>
+    <string name="log_path_removed">Общий путь удален: %1$s</string>
+    <string name="log_all_cleared">Все общие пути очищены</string>
+    <string name="log_warning_stopped">Предупреждение: Невозможно поделиться, пока сервер остановлен</string>
+
+    <!-- Crash Screen -->
+    <string name="crash_title">Критический сбой приложения</string>
+    <string name="crash_message">Приложение аварийно завершило работу из-за критической ошибки.</string>
+    <string name="crash_restart_button">Перезапустить приложение</string>
+    <string name="crash_no_stack_trace">Трассировка стека отсутствует</string>
+    <string name="crash_unknown_error">Неизвестная ошибка</string>
+</resources>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html {dir}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>{title}</title>
+    <script>
+        function filterFiles(event) {
+            if (event && event.key === 'Enter') {
+                const query = document.getElementById('searchInput').value.trim();
+                const url = new URL(window.location.href);
+                if (query) {
+                    url.searchParams.set('q', query);
+                } else {
+                    url.searchParams.delete('q');
+                }
+                window.location.href = url.toString();
+                return;
+            }
+
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const items = document.querySelectorAll('.file-item');
+            let count = 0;
+            items.forEach(item => {
+                const name = item.querySelector('.file-name').textContent.toLowerCase();
+                const path = item.querySelector('.file-path') ? item.querySelector('.file-path').textContent.toLowerCase() : '';
+                if (name.includes(query) || path.includes(query)) {
+                    item.style.display = 'grid';
+                    count++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            const emptySearch = document.getElementById('emptySearchState');
+            if (count === 0 && items.length > 0) {
+                if (!emptySearch) {
+                    const list = document.getElementById('fileListContainer');
+                    const el = document.createElement('div');
+                    el.id = 'emptySearchState';
+                    el.className = 'empty-state';
+                    el.textContent = '{emptySearchText}';
+                    list.appendChild(el);
+                }
+            } else {
+                if (emptySearch) emptySearch.remove();
+            }
+        }
+
+        function previewFile(name, url, ext) {
+            const modal = document.getElementById('previewModal');
+            const title = document.getElementById('previewTitle');
+            const content = document.getElementById('previewContent');
+            
+            title.textContent = name;
+            content.innerHTML = '<div class="preview-loading">Loading...</div>';
+            modal.style.display = 'flex';
+
+            if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'].includes(ext)) {
+                content.innerHTML = `<img src="${url}" class="preview-image" alt="${name}">`;
+            } else {
+                fetch(url)
+                    .then(r => r.text())
+                    .then(text => {
+                        content.innerHTML = `<pre class="preview-text">${escapeHtml(text)}</pre>`;
+                    })
+                    .catch(err => {
+                        content.innerHTML = `<div class="error-box">Error loading file: ${err}</div>`;
+                    });
+            }
+        }
+
+        function closePreview() {
+            document.getElementById('previewModal').style.display = 'none';
+            document.getElementById('previewContent').innerHTML = '';
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePreview();
+        });
+    </script>
+</head>
+<body>
+    <div class="container file-container">
+        <h1>{appName}</h1>
+        
+        <div class="breadcrumbs">
+            {breadcrumbsHtml}
+        </div>
+        
+        {searchBarHtml}
+        
+        <div class="file-explorer">
+            <div class="file-header">
+                <span>{headerName}</span>
+                <span>{headerType}</span>
+                <span>{headerSize}</span>
+                <span style="text-align: right">{headerActions}</span>
+            </div>
+            <div class="file-list" id="fileListContainer">
+                {itemsHtml}
+            </div>
+        </div>
+    </div>
+
+    <div id="previewModal" class="preview-modal" onclick="if(event.target === this) closePreview()">
+        <div class="preview-container container">
+            <div class="preview-header">
+                <h2 id="previewTitle"></h2>
+                <button class="close-btn" onclick="closePreview()">✕</button>
+            </div>
+            <div id="previewContent" class="preview-body"></div>
+        </div>
+    </div>
+</body>
+</html>
