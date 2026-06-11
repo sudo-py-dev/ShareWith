@@ -140,4 +140,21 @@
     <string name="https_no_certificate">لم يتم تحديد شهادة</string>
     <string name="https_password_label">كلمة مرور Keystore</string>
     <string name="https_password_placeholder">أدخل كلمة المرور</string>
+
+    <!-- About Tab -->
+    <string name="tab_about">حول</string>
+    <string name="about_header">حول ShareWith</string>
+    <string name="version_label">الإصدار</string>
+    <string name="developer_label">المطور</string>
+    <string name="developer_name">sudopydev</string>
+    <string name="license_label">الترخيص</string>
+    <string name="license_name">Apache License</string>
+    <string name="libraries_used_header">مكتبات مفتوحة المصدر</string>
+    <string name="library_ktor_desc">Ktor (Server &amp; Netty) - إطار عمل غير متزامن لخدمات الويب.</string>
+    <string name="library_compose_desc">Jetpack Compose - مجموعة أدوات حديثة لواجهة مستخدم Android.</string>
+    <string name="library_qrcode_desc">QRCode-Kotlin - إنشاء أكواد QR في Kotlin.</string>
+
+    <!-- Description -->
+    <string name="description_label">الوصف</string>
+    <string name="description_text">تطبيق لمشاركة الملفات على الشبكة المحلية يتميز بالأداء العالي والأمان وسهولة الاستخدام.</string>
 </resources>

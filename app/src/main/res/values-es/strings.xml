@@ -140,4 +140,21 @@
     <string name="https_no_certificate">Ningún certificado seleccionado</string>
     <string name="https_password_label">Contraseña del Keystore</string>
     <string name="https_password_placeholder">Ingrese la contraseña</string>
+
+    <!-- About Tab -->
+    <string name="tab_about">Acerca de</string>
+    <string name="about_header">Acerca de ShareWith</string>
+    <string name="version_label">Versión</string>
+    <string name="developer_label">Desarrollador</string>
+    <string name="developer_name">sudopydev</string>
+    <string name="license_label">Licencia</string>
+    <string name="license_name">Apache License</string>
+    <string name="libraries_used_header">Bibliotecas de código abierto</string>
+    <string name="library_ktor_desc">Ktor (Server &amp; Netty) - Framework asíncrono para servicios web.</string>
+    <string name="library_compose_desc">Jetpack Compose - Kit moderno para UI en Android.</string>
+    <string name="library_qrcode_desc">QRCode-Kotlin - Generador de códigos QR en Kotlin.</string>
+
+    <!-- Description -->
+    <string name="description_label">Descripción</string>
+    <string name="description_text">Una aplicación de intercambio de archivos en red local de alto rendimiento, segura y fácil de usar.</string>
 </resources>

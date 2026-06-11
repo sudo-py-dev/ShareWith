@@ -140,4 +140,21 @@
     <string name="https_no_certificate">לא נבחרה תעודה</string>
     <string name="https_password_label">סיסמת מאגר (Keystore)</string>
     <string name="https_password_placeholder">הזן סיסמה</string>
+
+    <!-- About Tab -->
+    <string name="tab_about">אודות</string>
+    <string name="about_header">אודות ShareWith</string>
+    <string name="version_label">גרסה</string>
+    <string name="developer_label">מפתח</string>
+    <string name="developer_name">sudopydev</string>
+    <string name="license_label">רישיון</string>
+    <string name="license_name">Apache License</string>
+    <string name="libraries_used_header">ספריות קוד פתוח</string>
+    <string name="library_ktor_desc">Ktor (Server &amp; Netty) - מסגרת אסינכרונית ליצירת שרתי רשת.</string>
+    <string name="library_compose_desc">Jetpack Compose - מסגרת עדכנית לבניית ממשקי משתמש באנדרואיד.</string>
+    <string name="library_qrcode_desc">QRCode-Kotlin - יצירת קודי QR בקלות בקוטלין.</string>
+
+    <!-- Description -->
+    <string name="description_label">תיאור</string>
+    <string name="description_text">אפליקציה לשיתוף קבצים ברשת מקומית - מאובטחת, ידידותית ובעלת ביצועים גבוהים.</string>
 </resources>

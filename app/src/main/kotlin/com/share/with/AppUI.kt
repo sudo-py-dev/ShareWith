@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.automirrored.filled.Send
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -178,6 +179,12 @@ fun AppUI() {
                                 selected = currentTab == "Logs",
                                 onClick = { currentTab = "Logs" },
                             )
+                            NavigationBarItem(
+                                icon = { Icon(Icons.Default.Info, contentDescription = null) },
+                                label = { Text(stringResource(R.string.tab_about)) },
+                                selected = currentTab == "About",
+                                onClick = { currentTab = "About" },
+                            )
                         }
                     },
                 ) { paddingValues ->
@@ -209,6 +216,7 @@ fun AppUI() {
                                         onSelectCertificate = { certPickerLauncher.launch(arrayOf("application/x-pkcs12")) },
                                     )
                                 "Logs" -> LogsTab()
+                                "About" -> com.share.with.ui.tabs.AboutTab()
                             }
                         }
                     }

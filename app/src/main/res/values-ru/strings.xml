@@ -140,4 +140,21 @@
     <string name="https_no_certificate">Сертификат не выбран</string>
     <string name="https_password_label">Пароль от Keystore</string>
     <string name="https_password_placeholder">Введите пароль</string>
+
+    <!-- About Tab -->
+    <string name="tab_about">О приложении</string>
+    <string name="about_header">О ShareWith</string>
+    <string name="version_label">Версия</string>
+    <string name="developer_label">Разработчик</string>
+    <string name="developer_name">sudopydev</string>
+    <string name="license_label">Лицензия</string>
+    <string name="license_name">Apache License</string>
+    <string name="libraries_used_header">Библиотеки с открытым исходным кодом</string>
+    <string name="library_ktor_desc">Ktor (Server &amp; Netty) - Асинхронный фреймворк для веб-сервисов.</string>
+    <string name="library_compose_desc">Jetpack Compose - Современный набор инструментов для UI Android.</string>
+    <string name="library_qrcode_desc">QRCode-Kotlin - Генерация QR-кодов на Kotlin.</string>
+
+    <!-- Description -->
+    <string name="description_label">Описание</string>
+    <string name="description_text">Высокопроизводительное, безопасное и удобное приложение для обмена файлами в локальной сети.</string>
 </resources>

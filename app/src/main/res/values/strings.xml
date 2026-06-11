@@ -147,7 +147,14 @@
     <string name="developer_label">Developer</string>
     <string name="developer_name">sudopydev</string>
     <string name="license_label">License</string>
-    <string name="license_name">MIT License</string>
+    <string name="license_name">Apache License</string>
     <string name="description_label">Description</string>
     <string name="description_text">A high-performance, secure, and user-friendly local network file sharing application.</string>
+
+    <!-- About Tab -->
+    <string name="tab_about">About</string>
+    <string name="libraries_used_header">Open Source Libraries</string>
+    <string name="library_ktor_desc">Ktor (Server &amp; Netty) - Asynchronous framework for creating microservices and web applications.</string>
+    <string name="library_compose_desc">Jetpack Compose - Android’s modern toolkit for building native UI.</string>
+    <string name="library_qrcode_desc">QRCode-Kotlin - Simple QRCode generation for Kotlin.</string>
 </resources>
