@@ -501,32 +501,7 @@ label {
     letter-spacing: 0.05em;
 }
 
-input[type="password"] {
-    width: 100%;
-    padding: 14px 18px;
-    background: var(--input-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--border-radius-md);
-    color: var(--text-main);
-    font-size: 16px;
-    outline: none;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    letter-spacing: 0.2em;
-}
 
-input[type="password"]::placeholder {
-    letter-spacing: normal;
-    font-size: 14px;
-    color: var(--text-muted);
-    opacity: 0.6;
-}
-
-input[type="password"]:focus {
-    border-color: var(--primary);
-    background: rgba(255, 255, 255, 0.02);
-    box-shadow: 0 0 0 4px var(--primary-glow);
-    transform: translateY(-1px);
-}
 
 .btn {
     display: inline-block;
@@ -582,3 +557,69 @@ input[type="password"]:focus {
     line-height: 1.6;
 }
 
+
+/* Password Toggle Wrapper */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+    width: 100%;
+    padding: 14px 48px 14px 18px;
+    background: var(--input-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius-md);
+    color: var(--text-main);
+    font-size: 16px;
+    outline: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.password-wrapper input[type="password"] {
+    letter-spacing: 0.2em;
+}
+
+html[dir="rtl"] .password-wrapper input[type="password"],
+html[dir="rtl"] .password-wrapper input[type="text"] {
+    padding: 14px 18px 14px 48px;
+}
+
+.password-wrapper input:focus {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 0 0 4px var(--primary-glow);
+    transform: translateY(-1px);
+}
+
+.password-toggle {
+    position: absolute;
+    inset-inline-end: 16px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.password-toggle:hover {
+    color: var(--primary);
+}
+
+.password-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+.password-wrapper input::placeholder {
+    letter-spacing: normal;
+    font-size: 14px;
+    color: var(--text-muted);
+    opacity: 0.6;
+}

@@ -108,8 +108,6 @@ fun SettingsTab(onSelectCertificate: () -> Unit) {
     val portValidationInvalidStr = stringResource(R.string.port_validation_invalid)
     val portValidationCollisionStr = stringResource(R.string.port_validation_collision)
 
-
-
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = androidx.compose.foundation.layout.PaddingValues(bottom = 16.dp),
@@ -612,7 +610,6 @@ fun SettingsTab(onSelectCertificate: () -> Unit) {
                 }
             }
         }
-
     }
 }
 
