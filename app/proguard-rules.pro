@@ -19,9 +19,18 @@
 -keep class com.share.with.CrashActivity { *; }
 -keep class com.share.with.FileSharingService { *; }
 
-# 3. Ktor (CIO Engine)
+# 3. Ktor (Netty Engine)
 -keep class io.ktor.** { *; }
 -dontwarn io.ktor.**
+
+# Netty specific ignores (optional dependencies)
+-dontwarn io.netty.**
+-keep class io.netty.** { *; }
+-dontwarn org.conscrypt.**
+-dontwarn org.bouncycastle.**
+-dontwarn org.apache.log4j.**
+-dontwarn org.apache.logging.log4j.**
+-dontwarn jdk.jfr.**
 
 # 4. Kotlin Coroutines
 # Bundled rules inside the libraries automatically manage coroutines keeps.

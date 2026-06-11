@@ -129,4 +129,15 @@
     <string name="crash_restart_button">إعادة تشغيل التطبيق</string>
     <string name="crash_no_stack_trace">لا يوجد تتبع للمكدس متاح</string>
     <string name="crash_unknown_error">خطأ غير معروف</string>
+
+    <!-- HTTPS -->
+    <string name="https_header">اتصال آمن (HTTPS)</string>
+    <string name="https_enabled_label">تمكين HTTPS</string>
+    <string name="https_port_label">منفذ HTTPS</string>
+    <string name="https_certificate_label">شهادة SSL (.p12 / .pfx)</string>
+    <string name="https_select_certificate">حدد ملف الشهادة</string>
+    <string name="https_certificate_selected">تم التحديد: %1$s</string>
+    <string name="https_no_certificate">لم يتم تحديد شهادة</string>
+    <string name="https_password_label">كلمة مرور Keystore</string>
+    <string name="https_password_placeholder">أدخل كلمة المرور</string>
 </resources>

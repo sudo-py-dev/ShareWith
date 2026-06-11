@@ -129,4 +129,15 @@
     <string name="crash_restart_button">Redémarrer l\'application</string>
     <string name="crash_no_stack_trace">Aucune trace de pile disponible</string>
     <string name="crash_unknown_error">Erreur inconnue</string>
+
+    <!-- HTTPS -->
+    <string name="https_header">Connexion Sécurisée (HTTPS)</string>
+    <string name="https_enabled_label">Activer HTTPS</string>
+    <string name="https_port_label">Port HTTPS</string>
+    <string name="https_certificate_label">Certificat SSL (.p12 / .pfx)</string>
+    <string name="https_select_certificate">Sélectionner un certificat</string>
+    <string name="https_certificate_selected">Sélectionné : %1$s</string>
+    <string name="https_no_certificate">Aucun certificat sélectionné</string>
+    <string name="https_password_label">Mot de passe du Keystore</string>
+    <string name="https_password_placeholder">Entrer le mot de passe</string>
 </resources>

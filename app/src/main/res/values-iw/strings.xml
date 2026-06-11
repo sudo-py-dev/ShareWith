@@ -129,4 +129,15 @@
     <string name="crash_restart_button">הפעל מחדש את האפליקציה</string>
     <string name="crash_no_stack_trace">אין תיעוד שגיאה זמין</string>
     <string name="crash_unknown_error">שגיאה לא ידועה</string>
+
+    <!-- HTTPS -->
+    <string name="https_header">חיבור מאובטח (HTTPS)</string>
+    <string name="https_enabled_label">אפשר HTTPS</string>
+    <string name="https_port_label">פורט HTTPS</string>
+    <string name="https_certificate_label">תעודת SSL (.p12 / .pfx)</string>
+    <string name="https_select_certificate">בחר קובץ תעודה</string>
+    <string name="https_certificate_selected">נבחר: %1$s</string>
+    <string name="https_no_certificate">לא נבחרה תעודה</string>
+    <string name="https_password_label">סיסמת מאגר (Keystore)</string>
+    <string name="https_password_placeholder">הזן סיסמה</string>
 </resources>

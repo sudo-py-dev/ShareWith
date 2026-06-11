@@ -129,4 +129,15 @@
     <string name="crash_restart_button">Перезапустить приложение</string>
     <string name="crash_no_stack_trace">Трассировка стека отсутствует</string>
     <string name="crash_unknown_error">Неизвестная ошибка</string>
+
+    <!-- HTTPS -->
+    <string name="https_header">Безопасное соединение (HTTPS)</string>
+    <string name="https_enabled_label">Включить HTTPS</string>
+    <string name="https_port_label">Порт HTTPS</string>
+    <string name="https_certificate_label">SSL-сертификат (.p12 / .pfx)</string>
+    <string name="https_select_certificate">Выбрать файл сертификата</string>
+    <string name="https_certificate_selected">Выбрано: %1$s</string>
+    <string name="https_no_certificate">Сертификат не выбран</string>
+    <string name="https_password_label">Пароль от Keystore</string>
+    <string name="https_password_placeholder">Введите пароль</string>
 </resources>

@@ -13,8 +13,7 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.application.call
 import io.ktor.server.application.install
-import io.ktor.server.cio.CIO
-import io.ktor.server.cio.CIOApplicationEngine
+import io.ktor.server.netty.Netty
 import io.ktor.server.engine.EmbeddedServer
 import io.ktor.server.engine.connector
 import io.ktor.server.engine.embeddedServer
@@ -41,7 +40,7 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
 object ServerManager {
-    private var server: EmbeddedServer<CIOApplicationEngine, CIOApplicationEngine.Configuration>? = null
+    private var server: EmbeddedServer<*, *>? = null
     private var appContext: Context? = null
     private var scheduler: java.util.concurrent.ScheduledExecutorService? = null
     private val csrfTokens = ConcurrentHashMap<String, String>()
@@ -117,8 +116,8 @@ object ServerManager {
 
                 appContext = context.applicationContext
 
-                val cioServer =
-                    embeddedServer(CIO, configure = {
+                val nettyServer =
+                    embeddedServer(Netty, configure = {
                         connector {
                             this.port = port
                         }
@@ -506,8 +505,8 @@ object ServerManager {
                             }
                         }
                     }
-                cioServer.start(wait = false)
-                server = cioServer
+                nettyServer.start(wait = false)
+                server = nettyServer
                 AppState.serverRunning = true
                 AppState.serverPort = port
                 AppState.addLog("Server started on port $port")

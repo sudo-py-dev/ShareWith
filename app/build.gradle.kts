@@ -67,6 +67,7 @@ android {
     packaging {
         resources {
             excludes += "META-INF/INDEX.LIST"
+            pickFirsts += "META-INF/io.netty.versions.properties"
         }
     }
 
@@ -109,7 +110,7 @@ dependencies {
 
     // Ktor HTTP Server (Runs on Android CIO)
     implementation(libs.ktor.server.core)
-    implementation(libs.ktor.server.cio)
+    implementation(libs.ktor.server.netty)
     implementation(libs.ktor.server.cors)
     implementation(libs.ktor.server.default.headers)
     implementation(libs.ktor.server.host.common)
