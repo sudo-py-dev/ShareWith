@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.share.with"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.share.with"
@@ -108,14 +108,14 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.compose.material.icons.extended)
 
-    // Ktor HTTP Server (Runs on Android CIO)
+    // Ktor HTTP Server 
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.netty)
     implementation(libs.ktor.server.cors)
     implementation(libs.ktor.server.default.headers)
     implementation(libs.ktor.server.host.common)
 
-    // QR Code Generator
+    // QR Code Generato r
     implementation(libs.qrcode.kotlin)
 
     // Android Document Picker and File system abstraction
