@@ -147,7 +147,9 @@ class FileSharingService : Service() {
             PendingIntent.getActivity(
                 this,
                 0,
-                Intent(this, MainActivity::class.java),
+                Intent(this, MainActivity::class.java).apply {
+                    setPackage(packageName)
+                },
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
             )
 
@@ -155,7 +157,10 @@ class FileSharingService : Service() {
             PendingIntent.getService(
                 this,
                 1,
-                Intent(this, FileSharingService::class.java).apply { action = ACTION_STOP },
+                Intent(this, FileSharingService::class.java).apply {
+                    setPackage(packageName)
+                    action = ACTION_STOP
+                },
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
             )
 

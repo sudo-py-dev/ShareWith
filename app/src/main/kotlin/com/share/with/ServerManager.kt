@@ -585,6 +585,7 @@ object ServerManager {
 
         val intent =
             Intent(context, MainActivity::class.java).apply {
+                setPackage(context.packageName)
                 flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
             }
         val pendingIntent =
