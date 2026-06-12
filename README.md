@@ -14,70 +14,33 @@
 
 ---
 
-ShareWith turns your Android device into a robust, localized file server in seconds. Easily share files and entire folders over your local Wi-Fi network without requiring internet access or cloud services. Built with Kotlin, Jetpack Compose, and Ktor (Netty engine).
+**ShareWith** turns your Android device into a robust, localized file server in seconds. Easily share files and entire folders over your local Wi-Fi network with anyone nearby—no cables, no internet access, and no cloud services required!
 
-## ✨ Key Features
+## ✨ What does it do?
 
-* **📂 Interactive Directory Browsing**: Don't want to download a massive ZIP file? Click "Open" on shared folders to dynamically browse their contents and download only the specific files you need directly from any web browser.
-* **🔒 Secure by Default**: 
-  * **Anti-Hijacking**: Every session is securely bound to the client's IP address.
-  * **Rate Limiting**: Built-in protection against brute-force password guessing.
-  * **CSRF & XSS Protection**: The web interface is hardened against cross-site attacks.
-  * **Path Traversal Prevention**: Rigorous backend checks ensure clients can only access the files you explicitly share.
-  * **HTTPS/SSL Support**: Host the server securely using a custom PKCS12 certificate to encrypt all data in transit.
-* **📡 100% Offline**: The application and its beautifully crafted Web UI work entirely offline. No external Google Fonts, tracking scripts, or analytics. Your files and metadata never leave your local network.
-* **📱 Modern Android UI**: A polished, responsive Material Design 3 interface built with Jetpack Compose. Includes real-time connection logging, active session tracking, and IP blocking.
-* **📸 Quick Connect via QR**: Simply scan the auto-generated QR code on your Android device with any smartphone or tablet to instantly access the shared files.
-* **🌍 Fully Localized**: Designed with global support, offering translations in Hebrew, Spanish, Arabic, French, Russian, and English.
+* **📱 Share Instantly**: Simply select the files or folders you want to share from your Android device.
+* **📸 Quick Connect via QR**: Anyone nearby can instantly access your files by scanning a QR code with their phone, tablet, or laptop. No app installation needed on their end!
+* **📂 Browse Before Downloading**: Don't want to download a massive ZIP file? Your friends can dynamically browse the shared folders on their web browser and download only the specific files they need.
+* **📡 100% Offline**: Works completely offline over your local network. Your files never touch the internet, ensuring maximum privacy and no data usage.
+* **🌍 Fully Localized**: Available in Hebrew, Spanish, Arabic, French, Russian, and English.
 
-## ⚡ Performance & Code Optimizations
+## 🔒 Security Options
 
-We recently refactored the backend server to ensure maximum efficiency:
-* **Zero-Allocation Zip Streaming**: Rather than allocating a new 64KB buffer for every recursive subdirectory during ZIP downloads, we now allocate a single buffer in the route handler and pass it down, significantly reducing garbage collection pressure.
-* **$O(1)$ Exception-Free Validation**: Replaced exception-based session UUID parsing with a high-performance regular expression check, eliminating expensive stack-trace generation overhead on invalid request tokens.
-* **Lazy Search Sorting**: Removed redundant recursive sorting during file system traversals. We now perform a flat, fast sort on the final matched results list only.
-* **Graceful HTTPS Fallback**: Added real-time tracking of HTTPS status. If the user's keystore fails to load, the server automatically falls back to HTTP and updates the UI and notification URL banners accordingly.
+You have full control over who can access your files. ShareWith offers three distinct security modes depending on your environment:
 
-## 🛠️ Security Modes
+1. **🛡️ Manual Approval (Recommended)**: The safest option. When someone tries to connect to your shared files, you will get a prompt on your Android device. You must manually approve their device before they can see or download anything.
+2. **🔑 Password Protected**: Secure your files with a custom password. Only people with the password can access the server.
+3. **🔓 Open Network**: Anyone connected to your local Wi-Fi can view and download the shared files immediately. *(Use with caution on public networks!)*
 
-ShareWith offers flexible security options depending on your environment:
+## 🚀 How to Install
 
-1. **Manual Approval (Recommended)**: New devices connecting to the server must be manually approved by you within the Android app. Unrecognized devices are kept pending.
-2. **Password Protected**: Secure the server with a custom password.
-3. **Open**: Anyone on the local network can view and download shared files (Use with caution on public networks!).
-
-## 🏗️ Technical Stack
-
-* **UI Framework**: Jetpack Compose (Material 3)
-* **Backend Server**: Ktor 3 (Netty Engine)
-* **Language**: Kotlin
-* **Minimum SDK**: API 26 (Android 8.0 Oreo)
-* **Target SDK**: API 36 (Android 15)
-
-## 🚀 Building from Source
-
-To compile and run the application yourself:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/sudo-py-dev/ShareWith
-   cd ShareWith
-   ```
-
-2. Open the project in **Android Studio**.
-
-3. Sync Gradle and run the application on your emulator or physical device.
-
-To build a release APK from the command line:
-```bash
-./gradlew assembleRelease
-```
-_Note: If signing the release build, ensure you provide the correct `release.keystore` and `keystore.password` inside `local.properties`._
+1. Download the latest APK from the [Releases](https://github.com/sudo-py-dev/ShareWith/releases/latest) page.
+2. Install it on your Android device (Android 8.0 or newer).
+3. Open the app, select what you want to share, and start sharing!
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome!
-Feel free to check out the [issues page](https://github.com/sudo-py-dev/ShareWith/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check out the [issues page](https://github.com/sudo-py-dev/ShareWith/issues).
 
 ## 📜 License
 
