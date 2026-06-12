@@ -6,7 +6,7 @@
   **A powerful, secure, and fully offline Android file sharing application.**
 
   [![Build](https://github.com/sudo-py-dev/ShareWith/actions/workflows/release.yml/badge.svg)](https://github.com/sudo-py-dev/ShareWith/actions/workflows/release.yml)
-  [![Download APK](https://img.shields.io/github/v/release/sudo-py-dev/ShareWith?label=Download%20APK&color=green)](https://github.com/sudo-py-dev/ShareWith/releases/latest)
+  [![Download APK](https://img.shields.io/badge/Download%20APK-Latest-green.svg)](https://github.com/sudo-py-dev/ShareWith/releases/latest)
   [![API](https://img.shields.io/badge/API-26%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=26)
   [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   [![Kotlin](https://img.shields.io/badge/kotlin-2.4.0-blue.svg?logo=kotlin)](http://kotlinlang.org)
