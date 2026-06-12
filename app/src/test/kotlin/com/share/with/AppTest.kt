@@ -91,25 +91,25 @@ class AppStateTest {
     @Test
     fun testLogStateManagement() {
         AppState.clearLogs()
-        assertEquals(0, AppState.logs.size, "Logs should be empty initially")
+        assertEquals(0, AppState.logsFlow.value.size, "Logs should be empty initially")
 
         AppState.addLog("Test message 1")
-        assertEquals(1, AppState.logs.size, "Logs size should increase")
-        assertTrue(AppState.logs[0].contains("Test message 1"), "Logs should contain the message")
+        assertEquals(1, AppState.logsFlow.value.size, "Logs size should increase")
+        assertTrue(AppState.logsFlow.value[0].contains("Test message 1"), "Logs should contain the message")
 
         // Test log injection prevention (newline sanitization)
         AppState.addLog("Injected\nLog\rLine")
-        assertFalse(AppState.logs[0].contains("\n"), "Logs must not contain raw newlines")
-        assertFalse(AppState.logs[0].contains("\r"), "Logs must not contain raw carriage returns")
-        assertTrue(AppState.logs[0].contains("Injected Log Line"), "Newline characters should be replaced with spaces")
+        assertFalse(AppState.logsFlow.value[0].contains("\n"), "Logs must not contain raw newlines")
+        assertFalse(AppState.logsFlow.value[0].contains("\r"), "Logs must not contain raw carriage returns")
+        assertTrue(AppState.logsFlow.value[0].contains("Injected Log Line"), "Newline characters should be replaced with spaces")
 
-        // Test log capping at 1000 items
+        // Test log capping at 500 items
         AppState.clearLogs()
-        for (i in 1..1050) {
+        for (i in 1..600) {
             AppState.addLog("Message $i")
         }
-        assertEquals(1000, AppState.logs.size, "Logs should be capped at 1000 items to prevent OOM")
-        assertTrue(AppState.logs[0].contains("Message 1050"), "Latest log should be at the top")
+        assertEquals(500, AppState.logsFlow.value.size, "Logs should be capped at 500 items to prevent OOM")
+        assertTrue(AppState.logsFlow.value[0].contains("Message 600"), "Latest log should be at the top")
     }
 
     @Test

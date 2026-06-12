@@ -210,8 +210,8 @@ object WebTemplates {
                     <div class="search-wrapper">
                         <span class="search-icon" onclick="performSearch(event)" style="cursor: pointer;">🔍</span>
                         <input type="text" id="searchInput" class="search-input" placeholder="${escapeHtml(
-                        searchPlaceholder,
-                    )}" value="${escapeHtml(query ?: "")}" onkeyup="filterFiles(event)">
+                    searchPlaceholder,
+                )}" value="${escapeHtml(query ?: "")}" onkeyup="filterFiles(event)">
                     </div>
                 </form>
                 """.trimIndent()

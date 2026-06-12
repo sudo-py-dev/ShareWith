@@ -406,12 +406,13 @@ object ServerManager {
                                 val startTime = System.currentTimeMillis()
 
                                 while (System.currentTimeMillis() - startTime < timeoutMs) {
-                                    status = when {
-                                        AppState.activeSessions.any { it.token == token && it.ipAddress == ip } -> "approved"
-                                        AppState.blockedIps.contains(ip) -> "rejected"
-                                        rejectedTokens.contains(token) -> "rejected"
-                                        else -> "pending"
-                                    }
+                                    status =
+                                        when {
+                                            AppState.activeSessions.any { it.token == token && it.ipAddress == ip } -> "approved"
+                                            AppState.blockedIps.contains(ip) -> "rejected"
+                                            rejectedTokens.contains(token) -> "rejected"
+                                            else -> "pending"
+                                        }
                                     if (status != "pending") {
                                         break
                                     }
