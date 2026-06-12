@@ -206,12 +206,14 @@ object WebTemplates {
         val searchBarHtml =
             if (files.isNotEmpty() || query != null) {
                 """
-                <div class="search-wrapper">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" id="searchInput" class="search-input" placeholder="${escapeHtml(
-                    searchPlaceholder,
-                )}" value="${escapeHtml(query ?: "")}" onkeyup="filterFiles(event)">
-                </div>
+                <form onsubmit="performSearch(event)">
+                    <div class="search-wrapper">
+                        <span class="search-icon" onclick="performSearch(event)" style="cursor: pointer;">🔍</span>
+                        <input type="text" id="searchInput" class="search-input" placeholder="${escapeHtml(
+                        searchPlaceholder,
+                    )}" value="${escapeHtml(query ?: "")}" onkeyup="filterFiles(event)">
+                    </div>
+                </form>
                 """.trimIndent()
             } else {
                 ""
@@ -254,7 +256,7 @@ object WebTemplates {
     ): String {
         if (size <= 0) return "0 B"
         val units = arrayOf("B", "KB", "MB", "GB", "TB")
-        val digitGroups = (Math.log10(size.toDouble()) / Math.log10(1024.0)).toInt()
+        val digitGroups = (Math.log10(size.toDouble()) / Math.log10(1024.0)).toInt().coerceIn(0, units.size - 1)
         val formattedValue = String.format(Locale.US, "%.2f", size / Math.pow(1024.0, digitGroups.toDouble()))
         return "$formattedValue ${units[digitGroups]}"
     }

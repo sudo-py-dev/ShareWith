@@ -13,7 +13,7 @@
 
 ---
 
-ShareWith turns your Android device into a robust, localized file server in seconds. Easily share files and entire folders over your local Wi-Fi network without requiring internet access or cloud services. Built with Kotlin, Jetpack Compose, and Ktor (CIO engine).
+ShareWith turns your Android device into a robust, localized file server in seconds. Easily share files and entire folders over your local Wi-Fi network without requiring internet access or cloud services. Built with Kotlin, Jetpack Compose, and Ktor (Netty engine).
 
 ## ✨ Key Features
 
@@ -23,10 +23,19 @@ ShareWith turns your Android device into a robust, localized file server in seco
   * **Rate Limiting**: Built-in protection against brute-force password guessing.
   * **CSRF & XSS Protection**: The web interface is hardened against cross-site attacks.
   * **Path Traversal Prevention**: Rigorous backend checks ensure clients can only access the files you explicitly share.
+  * **HTTPS/SSL Support**: Host the server securely using a custom PKCS12 certificate to encrypt all data in transit.
 * **📡 100% Offline**: The application and its beautifully crafted Web UI work entirely offline. No external Google Fonts, tracking scripts, or analytics. Your files and metadata never leave your local network.
 * **📱 Modern Android UI**: A polished, responsive Material Design 3 interface built with Jetpack Compose. Includes real-time connection logging, active session tracking, and IP blocking.
 * **📸 Quick Connect via QR**: Simply scan the auto-generated QR code on your Android device with any smartphone or tablet to instantly access the shared files.
 * **🌍 Fully Localized**: Designed with global support, offering translations in Hebrew, Spanish, Arabic, French, Russian, and English.
+
+## ⚡ Performance & Code Optimizations
+
+We recently refactored the backend server to ensure maximum efficiency:
+* **Zero-Allocation Zip Streaming**: Rather than allocating a new 64KB buffer for every recursive subdirectory during ZIP downloads, we now allocate a single buffer in the route handler and pass it down, significantly reducing garbage collection pressure.
+* **$O(1)$ Exception-Free Validation**: Replaced exception-based session UUID parsing with a high-performance regular expression check, eliminating expensive stack-trace generation overhead on invalid request tokens.
+* **Lazy Search Sorting**: Removed redundant recursive sorting during file system traversals. We now perform a flat, fast sort on the final matched results list only.
+* **Graceful HTTPS Fallback**: Added real-time tracking of HTTPS status. If the user's keystore fails to load, the server automatically falls back to HTTP and updates the UI and notification URL banners accordingly.
 
 ## 🛠️ Security Modes
 
@@ -39,7 +48,7 @@ ShareWith offers flexible security options depending on your environment:
 ## 🏗️ Technical Stack
 
 * **UI Framework**: Jetpack Compose (Material 3)
-* **Backend Server**: Ktor 3 (CIO Engine)
+* **Backend Server**: Ktor 3 (Netty Engine)
 * **Language**: Kotlin
 * **Minimum SDK**: API 26 (Android 8.0 Oreo)
 * **Target SDK**: API 36 (Android 15)

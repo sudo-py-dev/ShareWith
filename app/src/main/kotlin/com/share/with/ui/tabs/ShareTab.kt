@@ -71,16 +71,7 @@ fun ShareTab(
 ) {
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
-    val serverUrl =
-        if (AppState.localIp != null) {
-            if (AppState.isHttpsEnabled && AppState.keystoreUri.isNotEmpty()) {
-                "https://${AppState.localIp}:${AppState.httpsPort}"
-            } else {
-                "http://${AppState.localIp}:${AppState.serverPort}"
-            }
-        } else {
-            null
-        }
+    val serverUrl = AppState.getServerUrl()
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),

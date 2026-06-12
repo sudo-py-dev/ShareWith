@@ -55,13 +55,10 @@ object ServerManager {
     private const val SESSION_EXPIRY_MS = 3_600_000L // 1 hour
     private const val MAX_ZIP_DEPTH = 10
 
+    private val uuidRegex = Regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
+
     internal fun isValidUuid(str: String): Boolean {
-        return try {
-            UUID.fromString(str)
-            true
-        } catch (e: Exception) {
-            false
-        }
+        return str.length == 36 && uuidRegex.matches(str)
     }
 
     private fun isClientAuthorized(
@@ -122,22 +119,29 @@ object ServerManager {
                             this.port = port
                         }
 
+                        var sslSuccess = false
                         if (AppState.isHttpsEnabled) {
                             val keyStore = loadKeyStore()
                             if (keyStore != null) {
-                                sslConnector(
-                                    keyStore = keyStore,
-                                    keyAlias = keyStore.aliases().nextElement(),
-                                    keyStorePassword = { AppState.keystorePassword.toCharArray() },
-                                    privateKeyPassword = { AppState.keystorePassword.toCharArray() },
-                                ) {
-                                    this.port = AppState.httpsPort
+                                try {
+                                    sslConnector(
+                                        keyStore = keyStore,
+                                        keyAlias = keyStore.aliases().nextElement(),
+                                        keyStorePassword = { AppState.keystorePassword.toCharArray() },
+                                        privateKeyPassword = { AppState.keystorePassword.toCharArray() },
+                                    ) {
+                                        this.port = AppState.httpsPort
+                                    }
+                                    sslSuccess = true
+                                    AppState.addLog("HTTPS enabled on port ${AppState.httpsPort}")
+                                } catch (e: Exception) {
+                                    AppState.addLog("Failed to configure SSL: ${e.message}")
                                 }
-                                AppState.addLog("HTTPS enabled on port ${AppState.httpsPort}")
                             } else {
                                 AppState.addLog("HTTPS enabled but KeyStore failed to load. Falling back to HTTP only.")
                             }
                         }
+                        AppState.isHttpsActive = sslSuccess
                     }) {
                         install(io.ktor.server.plugins.defaultheaders.DefaultHeaders) {
                             header("X-Content-Type-Options", "nosniff")
@@ -178,12 +182,28 @@ object ServerManager {
 
                                     if (idStr.isNullOrEmpty()) {
                                         if (!query.isNullOrEmpty()) {
+                                            val trimmedQuery = query.trim()
                                             for (item in AppState.sharedItems) {
                                                 val rootFile = File(item.uriString)
                                                 if (rootFile.exists()) {
-                                                    searchFilesRecursively(rootFile, query, rootFile, item.id, webFiles)
+                                                    if (rootFile.isFile) {
+                                                        if (rootFile.name.contains(trimmedQuery, ignoreCase = true)) {
+                                                            webFiles.add(
+                                                                WebTemplates.WebFileEntry(
+                                                                    name = item.name,
+                                                                    size = item.size,
+                                                                    isDirectory = false,
+                                                                    browseUrl = null,
+                                                                    downloadUrl = "/download?id=${item.id}",
+                                                                ),
+                                                            )
+                                                        }
+                                                    } else {
+                                                        searchFilesRecursively(rootFile, trimmedQuery, rootFile, item.id, webFiles)
+                                                    }
                                                 }
                                             }
+                                            webFiles.sortWith(compareBy({ !it.isDirectory }, { it.name.lowercase() }))
                                         } else {
                                             for (item in AppState.sharedItems) {
                                                 val browseUrl = if (item.isDirectory) "/?id=${item.id}" else null
@@ -214,52 +234,30 @@ object ServerManager {
 
                                         breadcrumbs.add(Pair(sharedItem.name, "/?id=${sharedItem.id}"))
 
-                                        val targetDir =
-                                            if (subPath.isNullOrEmpty()) {
-                                                rootFile
-                                            } else {
-                                                if (subPath.startsWith("/") || subPath.startsWith("\\") || subPath.contains("..")) {
-                                                    AppState.addLog(
-                                                        "Security alert! Directory traversal blocked from $ip seeking: $subPath",
-                                                    )
-                                                    call.respond(HttpStatusCode.Forbidden, "Access Denied")
-                                                    return@get
-                                                }
-                                                val resolved = File(rootFile, subPath).canonicalFile
-                                                val rootPath = rootFile.canonicalPath
-                                                val normalizedRoot =
-                                                    if (rootPath.endsWith(
-                                                            File.separator,
-                                                        )
-                                                    ) {
-                                                        rootPath
-                                                    } else {
-                                                        rootPath + File.separator
-                                                    }
-                                                val isChild =
-                                                    resolved.canonicalPath.startsWith(normalizedRoot) ||
-                                                        resolved.canonicalPath == rootPath
-                                                if (!isChild || !resolved.isDirectory) {
-                                                    AppState.addLog(
-                                                        "Security alert! Directory traversal blocked from $ip seeking: $subPath",
-                                                    )
-                                                    call.respond(HttpStatusCode.Forbidden, "Access Denied")
-                                                    return@get
-                                                }
+                                        val targetDir = resolveSafePath(rootFile, subPath, ip)
+                                        if (targetDir == null) {
+                                            call.respond(HttpStatusCode.Forbidden, "Access Denied")
+                                            return@get
+                                        }
+                                        if (!targetDir.exists() || !targetDir.isDirectory) {
+                                            call.respond(HttpStatusCode.NotFound, "Shared directory does not exist")
+                                            return@get
+                                        }
 
-                                                val parts = subPath.split("/").filter { it.isNotEmpty() }
-                                                var currentPath = ""
-                                                for (part in parts) {
-                                                    currentPath = if (currentPath.isEmpty()) part else "$currentPath/$part"
-                                                    val encodedPath = java.net.URLEncoder.encode(currentPath, "UTF-8")
-                                                    breadcrumbs.add(Pair(part, "/?id=${sharedItem.id}&subPath=$encodedPath"))
-                                                }
-
-                                                resolved
+                                        if (!subPath.isNullOrEmpty()) {
+                                            val parts = subPath.split("/").filter { it.isNotEmpty() }
+                                            var currentPath = ""
+                                            for (part in parts) {
+                                                currentPath = if (currentPath.isEmpty()) part else "$currentPath/$part"
+                                                val encodedPath = java.net.URLEncoder.encode(currentPath, "UTF-8")
+                                                breadcrumbs.add(Pair(part, "/?id=${sharedItem.id}&subPath=$encodedPath"))
                                             }
+                                        }
 
                                         if (!query.isNullOrEmpty()) {
-                                            searchFilesRecursively(targetDir, query, rootFile, sharedItem.id, webFiles)
+                                            val trimmedQuery = query.trim()
+                                            searchFilesRecursively(targetDir, trimmedQuery, rootFile, sharedItem.id, webFiles)
+                                            webFiles.sortWith(compareBy({ !it.isDirectory }, { it.name.lowercase() }))
                                         } else {
                                             val children = targetDir.listFiles()?.sortedWith(compareBy({ !it.isDirectory }, { it.name.lowercase() })) ?: emptyList()
                                             for (child in children) {
@@ -397,17 +395,32 @@ object ServerManager {
                             get("/approve-check") {
                                 val token = call.request.queryParameters["token"]
                                 val ip = call.request.local.remoteHost
-                                val status =
-                                    when {
-                                        token == null || !isValidUuid(token) -> "invalid"
-                                        AppState.activeSessions.any { it.token == token && it.ipAddress == ip } -> {
-                                            call.response.cookies.append(SESSION_COOKIE_NAME, token, path = "/", httpOnly = true)
-                                            "approved"
-                                        }
+                                if (token == null || !isValidUuid(token)) {
+                                    call.respondText("{\"status\":\"invalid\"}", ContentType.Application.Json)
+                                    return@get
+                                }
+
+                                var status = "pending"
+                                val timeoutMs = 30_000L
+                                val checkIntervalMs = 500L
+                                val startTime = System.currentTimeMillis()
+
+                                while (System.currentTimeMillis() - startTime < timeoutMs) {
+                                    status = when {
+                                        AppState.activeSessions.any { it.token == token && it.ipAddress == ip } -> "approved"
                                         AppState.blockedIps.contains(ip) -> "rejected"
                                         rejectedTokens.contains(token) -> "rejected"
                                         else -> "pending"
                                     }
+                                    if (status != "pending") {
+                                        break
+                                    }
+                                    kotlinx.coroutines.delay(checkIntervalMs)
+                                }
+
+                                if (status == "approved") {
+                                    call.response.cookies.append(SESSION_COOKIE_NAME, token, path = "/", httpOnly = true)
+                                }
                                 call.respondText("{\"status\":\"$status\"}", ContentType.Application.Json)
                             }
 
@@ -444,34 +457,11 @@ object ServerManager {
                                     return@get
                                 }
 
-                                val targetFile =
-                                    if (subPath.isNullOrEmpty()) {
-                                        rootFile
-                                    } else {
-                                        if (subPath.startsWith("/") || subPath.startsWith("\\") || subPath.contains("..")) {
-                                            AppState.addLog("Security alert! Directory traversal blocked from $ip seeking: $subPath")
-                                            call.respond(HttpStatusCode.Forbidden, "Access Denied")
-                                            return@get
-                                        }
-                                        val resolved = File(rootFile, subPath).canonicalFile
-                                        val rootPath = rootFile.canonicalPath
-                                        val normalizedRoot =
-                                            if (rootPath.endsWith(
-                                                    File.separator,
-                                                )
-                                            ) {
-                                                rootPath
-                                            } else {
-                                                rootPath + File.separator
-                                            }
-                                        val isChild = resolved.canonicalPath.startsWith(normalizedRoot) || resolved.canonicalPath == rootPath
-                                        if (!isChild) {
-                                            AppState.addLog("Security alert! Directory traversal blocked from $ip seeking: $subPath")
-                                            call.respond(HttpStatusCode.Forbidden, "Access Denied")
-                                            return@get
-                                        }
-                                        resolved
-                                    }
+                                val targetFile = resolveSafePath(rootFile, subPath, ip)
+                                if (targetFile == null) {
+                                    call.respond(HttpStatusCode.Forbidden, "Access Denied")
+                                    return@get
+                                }
 
                                 if (!targetFile.exists()) {
                                     call.respond(HttpStatusCode.NotFound, "File does not exist")
@@ -494,10 +484,11 @@ object ServerManager {
                                         HttpHeaders.ContentDisposition,
                                         "attachment; filename=\"$encodedName\"; filename*=UTF-8''$encodedName",
                                     )
+                                    val buffer = ByteArray(64 * 1024)
                                     call.respondOutputStream(ContentType.Application.Zip) {
                                         val fileCount = java.util.concurrent.atomic.AtomicInteger(0)
                                         ZipOutputStream(this).use { zos ->
-                                            zipDirectory(targetFile, "", zos, 0, fileCount, rootFile)
+                                            zipDirectory(targetFile, "", zos, 0, fileCount, rootFile, buffer)
                                         }
                                     }
                                     AppState.addLog("Directory download (as ZIP) completed: ${targetFile.name} by $ip")
@@ -567,6 +558,7 @@ object ServerManager {
                 server?.stop(1000, 2000)
                 server = null
                 AppState.serverRunning = false
+                AppState.isHttpsActive = false
                 AppState.clearActiveAndPending()
                 rejectedTokens.clear()
                 csrfTokens.clear()
@@ -627,6 +619,33 @@ object ServerManager {
         notificationManager.notify(2002, notification)
     }
 
+    private fun resolveSafePath(
+        rootFile: File,
+        subPath: String?,
+        ip: String,
+    ): File? {
+        if (subPath.isNullOrEmpty()) return rootFile
+
+        if (subPath.startsWith("/") || subPath.startsWith("\\") || subPath.contains("..")) {
+            AppState.addLog("Security alert! Directory traversal blocked from $ip seeking: $subPath")
+            return null
+        }
+        return try {
+            val resolved = File(rootFile, subPath).canonicalFile
+            val rootPath = rootFile.canonicalPath
+            val normalizedRoot = if (rootPath.endsWith(File.separator)) rootPath else rootPath + File.separator
+            val isChild = resolved.canonicalPath.startsWith(normalizedRoot) || resolved.canonicalPath == rootPath
+            if (!isChild) {
+                AppState.addLog("Security alert! Directory traversal blocked from $ip seeking: $subPath")
+                null
+            } else {
+                resolved
+            }
+        } catch (e: Exception) {
+            null
+        }
+    }
+
     private fun searchFilesRecursively(
         dir: File,
         query: String,
@@ -636,9 +655,7 @@ object ServerManager {
         depth: Int = 0,
     ) {
         if (depth > 20 || results.size >= 500) return
-        val files =
-            dir.listFiles()?.sortedWith(compareBy({ !it.isDirectory }, { it.name.lowercase() }))
-                ?: return
+        val files = dir.listFiles() ?: return
 
         val rootPath = rootFile.canonicalPath
         val normalizedRoot = if (rootPath.endsWith(File.separator)) rootPath else rootPath + File.separator
@@ -646,14 +663,13 @@ object ServerManager {
         for (file in files) {
             if (results.size >= 500) break
 
-            // Skip symbolic links and files outside root for absolute safety
+            // Skip files outside root for absolute safety
             val canonical =
                 try {
                     file.canonicalPath
                 } catch (e: Exception) {
                     continue
                 }
-            if (java.nio.file.Files.isSymbolicLink(file.toPath())) continue
             if (!canonical.startsWith(normalizedRoot) && canonical != rootPath) continue
 
             if (file.name.contains(query, ignoreCase = true)) {
@@ -703,10 +719,10 @@ object ServerManager {
         depth: Int,
         fileCount: java.util.concurrent.atomic.AtomicInteger,
         rootFile: File,
+        buffer: ByteArray,
     ) {
         if (depth > MAX_ZIP_DEPTH || fileCount.get() > MAX_ZIP_FILES) return
         val files = dir.listFiles() ?: return
-        val buffer = ByteArray(64 * 1024)
 
         val rootPath = rootFile.canonicalPath
         val normalizedRoot = if (rootPath.endsWith(File.separator)) rootPath else rootPath + File.separator
@@ -714,19 +730,18 @@ object ServerManager {
         for (file in files) {
             if (fileCount.incrementAndGet() > MAX_ZIP_FILES) break
 
-            // Security checks: canonical path must be within root, skip symlinks
+            // Security checks: canonical path must be within root
             val canonical =
                 try {
                     file.canonicalPath
                 } catch (e: Exception) {
                     continue
                 }
-            if (java.nio.file.Files.isSymbolicLink(file.toPath())) continue
             if (!canonical.startsWith(normalizedRoot) && canonical != rootPath) continue
 
             val entryName = if (relativePrefix.isEmpty()) file.name else "$relativePrefix/${file.name}"
             if (file.isDirectory) {
-                zipDirectory(file, entryName, zos, depth + 1, fileCount, rootFile)
+                zipDirectory(file, entryName, zos, depth + 1, fileCount, rootFile, buffer)
             } else {
                 try {
                     val entry = ZipEntry(entryName)

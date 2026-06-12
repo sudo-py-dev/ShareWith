@@ -86,6 +86,7 @@ object AppState {
     var password by mutableStateOf("")
 
     var isHttpsEnabled by mutableStateOf(false)
+    var isHttpsActive by mutableStateOf(false)
     var httpsPort by mutableIntStateOf(443)
     var httpsPortInput by mutableStateOf("443")
     var keystoreUri by mutableStateOf("")
@@ -268,6 +269,13 @@ object AppState {
         localIp = getLocalIpAddress()
     }
 
+    fun getServerUrl(fallbackToLocalhost: Boolean = false): String? {
+        val ip = localIp ?: if (fallbackToLocalhost) "localhost" else return null
+        val proto = if (isHttpsActive) "https" else "http"
+        val port = if (isHttpsActive) httpsPort else serverPort
+        return "$proto://$ip:$port"
+    }
+
     fun addLog(message: String) {
         val sanitizedMessage = message.replace('\r', ' ').replace('\n', ' ')
         val time = SimpleDateFormat("HH:mm:ss", Locale.US).format(Date())
@@ -390,6 +398,6 @@ object AppState {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        return "127.0.0.1"
+        return null
     }
 }

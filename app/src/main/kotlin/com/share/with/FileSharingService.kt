@@ -159,12 +159,7 @@ class FileSharingService : Service() {
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
             )
 
-        val serverUrl =
-            if (AppState.localIp != null) {
-                "http://${AppState.localIp}:${AppState.serverPort}"
-            } else {
-                "http://localhost:${AppState.serverPort}"
-            }
+        val serverUrl = AppState.getServerUrl(fallbackToLocalhost = true) ?: "http://localhost:${AppState.serverPort}"
 
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(getString(R.string.notif_server_running_title))

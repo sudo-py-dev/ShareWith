@@ -6,16 +6,21 @@
     <link rel="stylesheet" href="/style.css">
     <title>{title}</title>
     <script>
+        function performSearch(event) {
+            if (event) event.preventDefault();
+            const query = document.getElementById('searchInput').value.trim();
+            const url = new URL(window.location.href);
+            if (query) {
+                url.searchParams.set('q', query);
+            } else {
+                url.searchParams.delete('q');
+            }
+            window.location.href = url.toString();
+        }
+
         function filterFiles(event) {
             if (event && event.key === 'Enter') {
-                const query = document.getElementById('searchInput').value.trim();
-                const url = new URL(window.location.href);
-                if (query) {
-                    url.searchParams.set('q', query);
-                } else {
-                    url.searchParams.delete('q');
-                }
-                window.location.href = url.toString();
+                performSearch(event);
                 return;
             }
 
